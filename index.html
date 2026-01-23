@@ -170,7 +170,8 @@
                 <a href="#services" class="hover:text-teal-600 transition">Services</a>
                 <a href="#about" class="hover:text-teal-600 transition">About</a>
                 <a href="#portfolio" class="hover:text-teal-600 transition">Portfolio</a>
-                <a href="https://wa.me/919149379162" target="_blank" class="px-6 py-3 bg-[#1F2532] text-white rounded-lg hover:bg-teal-600 transition shadow-lg flex items-center gap-2">
+                <!-- First one (Navbar) - Keeps the message -->
+                <a href="https://wa.me/919149379162?text=Hi%20UniKreate%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" class="px-6 py-3 bg-[#1F2532] text-white rounded-lg hover:bg-teal-600 transition shadow-lg flex items-center gap-2">
                     <i class="fa-brands fa-whatsapp"></i> Chat Now
                 </a>
             </div>
@@ -186,6 +187,7 @@
         <a href="#services" class="mob-link hover:text-teal-600">Services</a>
         <a href="#about" class="mob-link hover:text-teal-600">About</a>
         <a href="#portfolio" class="mob-link hover:text-teal-600">Portfolio</a>
+        <!-- Removed message from others as requested "first one" -->
         <a href="https://wa.me/919149379162" target="_blank" class="mob-link text-green-600 flex items-center gap-2">
             <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
         </a>
@@ -378,33 +380,177 @@
 
     <section id="portfolio" class="py-24 px-6 bg-slate-50">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 reveal">
+            <div class="text-center mb-12 reveal">
                 <h2 class="text-4xl font-extrabold mb-4 text-[#1F2532]">Our Recent Work</h2>
-                <p class="text-slate-500">Check out some of our latest campaigns and designs.</p>
+                <p class="text-slate-500 mb-8">Browse our projects by category.</p>
+                
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-3 mb-8" id="portfolio-filters">
+                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold transition-all bg-[#1F2532] text-white shadow-lg" data-filter="all">All</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold text-slate-600 bg-white hover:bg-slate-100 transition-all" data-filter="website">Website (1)</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold text-slate-600 bg-white hover:bg-slate-100 transition-all" data-filter="pre-wedding">Pre Wedding (2)</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold text-slate-600 bg-white hover:bg-slate-100 transition-all" data-filter="car-shoot">Car Shoot (3)</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold text-slate-600 bg-white hover:bg-slate-100 transition-all" data-filter="app-marketing">App Video (4)</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold text-slate-600 bg-white hover:bg-slate-100 transition-all" data-filter="event-planner">Events (5)</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold text-slate-600 bg-white hover:bg-slate-100 transition-all" data-filter="graphic">Graphic (6)</button>
+                </div>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
-                <div class="group relative overflow-hidden rounded-2xl aspect-video bg-gray-200">
-                    <div class="absolute inset-0 bg-[#1F2532] flex items-center justify-center text-white/50 text-xl font-bold">Project 01</div>
-                    <div class="absolute inset-0 bg-teal-900/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <span class="text-white font-bold text-xl">Social Media Campaign</span>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal transition-all duration-500">
+                
+                <!-- 1. WEBSITE (1 Project) -->
+                <a href="https://unikreate.github.io/UniKreate/" target="_blank" class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-slate-900 block border border-slate-700 shadow-lg cursor-pointer" data-category="website">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                        <i class="fa-solid fa-robot text-4xl text-teal-400 mb-3"></i>
+                        <span class="text-white text-xl font-bold">UniKreate AI</span>
+                        <span class="text-slate-400 text-sm">Scripting & Idea Engine</span>
+                    </div>
+                    <div class="absolute inset-0 bg-teal-600/95 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-center p-4">
+                        <span class="text-white font-bold text-xl mb-2">AI Powered Tool</span>
+                        <p class="text-white/90 text-sm mb-4">My personal AI engine for automated script writing.</p>
+                        <span class="px-4 py-2 bg-white text-teal-800 rounded-full text-xs font-bold uppercase flex items-center gap-2">View Live <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </a>
+
+                <!-- 2. PRE WEDDING (2 Projects) -->
+                <!-- Project 1: Actual Video Upload -->
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="pre-wedding">
+                    <video src="pre weddding11.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- Overlay Label (fades out when interacting/hovering if desired, but kept simple here) -->
+                    <div class="absolute top-4 left-4 pointer-events-none">
+                         <span class="bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+                            <i class="fa-solid fa-play mr-1"></i> Featured
+                         </span>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-video bg-gray-200">
-                    <div class="absolute inset-0 bg-[#1F2532] flex items-center justify-center text-white/50 text-xl font-bold">Project 02</div>
-                    <div class="absolute inset-0 bg-teal-900/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <span class="text-white font-bold text-xl">Brand Identity</span>
+
+                <!-- Project 2: Placeholder -->
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-rose-100" data-category="pre-wedding">
+                    <div class="absolute inset-0 flex items-center justify-center text-rose-300 text-4xl"><i class="fa-solid fa-ring"></i></div>
+                    <div class="absolute inset-0 bg-[#1F2532]/10 group-hover:bg-[#1F2532]/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Goa Destination</span>
+                        <span class="text-rose-200 text-sm opacity-0 group-hover:opacity-100 transition duration-300">Save the Date</span>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-video bg-gray-200">
-                    <div class="absolute inset-0 bg-[#1F2532] flex items-center justify-center text-white/50 text-xl font-bold">Project 03</div>
-                    <div class="absolute inset-0 bg-teal-900/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <span class="text-white font-bold text-xl">Web Development</span>
+
+                <!-- 3. CAR SHOOT (3 Projects) -->
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-slate-200" data-category="car-shoot">
+                    <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-4xl"><i class="fa-solid fa-car-side"></i></div>
+                    <div class="absolute inset-0 bg-[#1F2532]/10 group-hover:bg-[#1F2532]/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Luxury Sedan Reveal</span>
                     </div>
                 </div>
-            </div>
-            <div class="text-center mt-12">
-                <a href="https://wa.me/919149379162" class="inline-block px-8 py-3 border-2 border-[#1F2532] text-[#1F2532] font-bold rounded-xl hover:bg-[#1F2532] hover:text-white transition">View All Projects</a>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-slate-200" data-category="car-shoot">
+                    <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-4xl"><i class="fa-solid fa-truck-pickup"></i></div>
+                    <div class="absolute inset-0 bg-[#1F2532]/10 group-hover:bg-[#1F2532]/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Off-Road Adventure</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-slate-200" data-category="car-shoot">
+                    <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-4xl"><i class="fa-solid fa-gauge-high"></i></div>
+                    <div class="absolute inset-0 bg-[#1F2532]/10 group-hover:bg-[#1F2532]/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Sports Edition</span>
+                    </div>
+                </div>
+
+                <!-- 4. APP MARKETING VIDEO (4 Projects) -->
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-blue-100" data-category="app-marketing">
+                    <div class="absolute inset-0 flex items-center justify-center text-blue-300 text-4xl"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-blue-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Fintech App Promo</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-blue-100" data-category="app-marketing">
+                    <div class="absolute inset-0 flex items-center justify-center text-blue-300 text-4xl"><i class="fa-solid fa-burger"></i></div>
+                    <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-blue-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Food Delivery Ad</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-blue-100" data-category="app-marketing">
+                    <div class="absolute inset-0 flex items-center justify-center text-blue-300 text-4xl"><i class="fa-solid fa-dumbbell"></i></div>
+                    <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-blue-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Fitness App Story</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-blue-100" data-category="app-marketing">
+                    <div class="absolute inset-0 flex items-center justify-center text-blue-300 text-4xl"><i class="fa-solid fa-gamepad"></i></div>
+                    <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-blue-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Gaming App Teaser</span>
+                    </div>
+                </div>
+
+                <!-- 5. EVENT PLANNER VIDEO (5 Projects) -->
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-purple-100" data-category="event-planner">
+                    <div class="absolute inset-0 flex items-center justify-center text-purple-300 text-4xl"><i class="fa-solid fa-users"></i></div>
+                    <div class="absolute inset-0 bg-purple-900/10 group-hover:bg-purple-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Corporate Summit</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-purple-100" data-category="event-planner">
+                    <div class="absolute inset-0 flex items-center justify-center text-purple-300 text-4xl"><i class="fa-solid fa-music"></i></div>
+                    <div class="absolute inset-0 bg-purple-900/10 group-hover:bg-purple-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Music Festival 2025</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-purple-100" data-category="event-planner">
+                    <div class="absolute inset-0 flex items-center justify-center text-purple-300 text-4xl"><i class="fa-solid fa-rocket"></i></div>
+                    <div class="absolute inset-0 bg-purple-900/10 group-hover:bg-purple-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Product Launch</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-purple-100" data-category="event-planner">
+                    <div class="absolute inset-0 flex items-center justify-center text-purple-300 text-4xl"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                    <div class="absolute inset-0 bg-purple-900/10 group-hover:bg-purple-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Charity Gala</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-purple-100" data-category="event-planner">
+                    <div class="absolute inset-0 flex items-center justify-center text-purple-300 text-4xl"><i class="fa-solid fa-microphone"></i></div>
+                    <div class="absolute inset-0 bg-purple-900/10 group-hover:bg-purple-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Tech Conference</span>
+                    </div>
+                </div>
+
+                <!-- 6. GRAPHIC (6 Projects) -->
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-orange-100" data-category="graphic">
+                    <div class="absolute inset-0 flex items-center justify-center text-orange-300 text-4xl"><i class="fa-solid fa-layer-group"></i></div>
+                    <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-orange-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Social Media Kit</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-orange-100" data-category="graphic">
+                    <div class="absolute inset-0 flex items-center justify-center text-orange-300 text-4xl"><i class="fa-solid fa-bezier-curve"></i></div>
+                    <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-orange-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Brand Logo Set</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-orange-100" data-category="graphic">
+                    <div class="absolute inset-0 flex items-center justify-center text-orange-300 text-4xl"><i class="fa-solid fa-file-image"></i></div>
+                    <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-orange-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Marketing Flyers</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-orange-100" data-category="graphic">
+                    <div class="absolute inset-0 flex items-center justify-center text-orange-300 text-4xl"><i class="fa-solid fa-calendar-day"></i></div>
+                    <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-orange-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Event Posters</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-orange-100" data-category="graphic">
+                    <div class="absolute inset-0 flex items-center justify-center text-orange-300 text-4xl"><i class="fa-solid fa-address-card"></i></div>
+                    <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-orange-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Business Cards</span>
+                    </div>
+                </div>
+                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-orange-100" data-category="graphic">
+                    <div class="absolute inset-0 flex items-center justify-center text-orange-300 text-4xl"><i class="fa-solid fa-chart-pie"></i></div>
+                    <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-orange-900/80 transition duration-300 flex flex-col items-center justify-center">
+                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Infographic Series</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -523,6 +669,40 @@
         }
         window.addEventListener("scroll", reveal);
         window.addEventListener("load", reveal);
+
+        // Portfolio Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active styling from all buttons
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-[#1F2532]', 'text-white', 'shadow-lg');
+                    b.classList.add('bg-white', 'text-slate-600');
+                });
+                
+                // Add active styling to clicked button
+                btn.classList.remove('bg-white', 'text-slate-600');
+                btn.classList.add('bg-[#1F2532]', 'text-white', 'shadow-lg');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                projectItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.classList.remove('hidden');
+                        // Add a small animation effect when showing
+                        item.classList.add('animate-fade-in'); 
+                        setTimeout(() => item.classList.remove('animate-fade-in'), 500);
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+                
+                // Re-trigger scroll reveal if needed
+                reveal();
+            });
+        });
 
         // Mobile Menu Logic (Fixed for smoother transition)
         const menuBtn = document.getElementById('menuBtn');
