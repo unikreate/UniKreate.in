@@ -3,7 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniKreate | Digital Marketing & Creative Agency</title>
+    <title>UniKreate Logo Recreation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: baseline; /* Aligns text and icon on the baseline */
+            font-family: 'Playfair Display', serif;
+            font-size: 80px; /* Adjust size here */
+            color: #1F2532; /* Dark Navy/Charcoal color */
+            line-height: 1;
+            user-select: none; /* Prevents text highlighting cursor */
+        }
+
+        .text-part {
+            letter-spacing: -0.02em; /* Tighten spacing slightly */
+        }
+
+        /* The Custom K Symbol */
+        .icon-k {
+            height: 0.72em; /* Height relative to font size */
+            width: 0.65em;
+            margin: 0 0.02em; /* Slight spacing around the K */
+            position: relative;
+            top: 0;
+            overflow: visible;
+        }
+
+        /* Color definitions */
+        .navy-fill {
+            fill: #1F2532; 
+        }
+
+        .beige-fill {
+            fill: #D1C4A9; /* The gold/beige color */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo-container">
+        <span class="text-part">Uni</span>
+
+        <svg class="icon-k" viewBox="0 0 65 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="12" height="100" class="navy-fill" />
+            
+            <path d="M12 55 L65 100 L45 100 L0 55 Z" class="navy-fill" />
+            
+            <path d="M12 55 L60 15 L40 15 L0 55 Z" class="beige-fill" />
+        </svg>
+
+        <span class="text-part">reate</span>
+    </div>
+
+</body>
+</html>| Digital Marketing & Creative Agency</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
