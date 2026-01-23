@@ -1,783 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="UniKreate - Full service digital marketing agency, web development, and creative branding services.">
-    <title>UniKreate | Digital Marketing & Creative Agency</title>
-    
-    <link rel="icon" type="image/png" href="WhatsApp%20Image%202026-01-23%20at%202.54.09%20PM.png">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- BRAND CONFIGURATION --- */
-        :root {
-            --brand-navy: #1F2532;
-            --brand-gold: #D1C4A9;
-            --brand-accent: #6366f1;
-            --brand-teal: #14b8a6;
-            --whatsapp-green: #25D366;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--brand-navy);
-            scroll-behavior: smooth;
-        }
-
-        /* --- LOGO STYLES --- */
-        .brand-logo {
-            display: flex;
-            align-items: baseline;
-            font-family: 'Playfair Display', serif;
-            line-height: 1;
-            user-select: none;
-        }
-
-        .brand-logo .text-part {
-            letter-spacing: -0.02em;
-            font-weight: 600;
-        }
-
-        .brand-logo .icon-k {
-            height: 0.72em;
-            width: 0.65em;
-            margin: 0 0.02em;
-            position: relative;
-            overflow: visible;
-        }
-
-        .brand-logo .navy-fill { fill: var(--brand-navy); }
-        .brand-logo .beige-fill { fill: var(--brand-gold); }
-        .brand-logo .text-part { color: var(--brand-navy); }
-
-        /* Footer Logo Colors */
-        .brand-logo-light .navy-fill { fill: #ffffff; }
-        .brand-logo-light .text-part { color: #ffffff; }
-        .brand-logo-light .beige-fill { fill: var(--brand-gold); }
-
-        /* --- UI UTILITIES --- */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .service-card { transition: all 0.3s ease; z-index: 10; position: relative; }
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            border-color: var(--brand-teal);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, var(--brand-navy), var(--brand-teal));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        /* --- BACKGROUND DECORATIONS --- */
-        .bg-blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            z-index: 0;
-            pointer-events: none;
-            animation: float 10s infinite ease-in-out;
-        }
-
-        .blob-teal { background: linear-gradient(to right, #2dd4bf, #0d9488); }
-        .blob-indigo { background: linear-gradient(to right, #818cf8, #6366f1); }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(20px, -20px) scale(1.1); }
-            100% { transform: translate(0, 0) scale(1); }
-        }
-
-        /* --- WHATSAPP FLOATING BUTTON --- */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--whatsapp-green);
-            color: white;
-            border-radius: 50px;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            animation: pulse-green 2s infinite;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-        }
-
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        /* Scroll Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
-<body class="bg-white overflow-x-hidden">
-
-    <nav class="fixed w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2 hover:opacity-80 transition" aria-label="Home">
-                <img src="WhatsApp%20Image%202026-01-23%20at%202.54.09%20PM.png" 
-                     onerror="this.style.display='none'; document.getElementById('header-fallback').style.display='flex';" 
-                     alt="UniKreate Logo" 
-                     class="h-16 w-auto object-contain">
-                
-                <div id="header-fallback" style="display:none;" class="brand-logo text-3xl md:text-4xl">
-                    <span class="text-part">Uni</span>
-                    <svg class="icon-k" viewBox="0 0 65 100" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0" y="0" width="12" height="100" class="navy-fill" />
-                        <path d="M12 55 L65 100 L45 100 L0 55 Z" class="navy-fill" />
-                        <path d="M12 55 L60 15 L40 15 L0 55 Z" class="beige-fill" />
-                    </svg>
-                    <span class="text-part">reate</span>
-                </div>
-            </a>
-            
-            <div class="hidden md:flex gap-8 font-semibold text-sm uppercase tracking-wide items-center">
-                <a href="#services" class="hover:text-teal-600 transition">Services</a>
-                <a href="#about" class="hover:text-teal-600 transition">About</a>
-                <a href="#portfolio" class="hover:text-teal-600 transition">Portfolio</a>
-                <!-- First one (Navbar) - Keeps the message -->
-                <a href="https://wa.me/919149379162?text=Hi%20UniKreate%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" class="px-6 py-3 bg-[#1F2532] text-white rounded-lg hover:bg-teal-600 transition shadow-lg flex items-center gap-2">
-                    <i class="fa-brands fa-whatsapp"></i> Chat Now
-                </a>
-            </div>
-
-            <button class="md:hidden text-2xl text-[#1F2532]" id="menuBtn" aria-label="Open Menu">
-                <i class="fa-solid fa-bars-staggered"></i>
-            </button>
-        </div>
-    </nav>
-
-    <div id="mobileMenu" class="fixed inset-0 bg-white z-[60] flex flex-col items-center justify-center gap-8 text-2xl font-bold hidden opacity-0 transition-opacity duration-300">
-        <button class="absolute top-6 right-6 text-4xl" id="closeBtn" aria-label="Close Menu">&times;</button>
-        <a href="#services" class="mob-link hover:text-teal-600">Services</a>
-        <a href="#about" class="mob-link hover:text-teal-600">About</a>
-        <a href="#portfolio" class="mob-link hover:text-teal-600">Portfolio</a>
-        <!-- Removed message from others as requested "first one" -->
-        <a href="https://wa.me/919149379162" target="_blank" class="mob-link text-green-600 flex items-center gap-2">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
-        </a>
+<div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="car-shoot">
+    <video src="car delivery11.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-4 left-4 pointer-events-none">
+        <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+            <i class="fa-solid fa-play mr-1"></i> New Arrival
+        </span>
     </div>
+</div>
 
-    <a href="https://wa.me/919149379162" class="whatsapp-float" target="_blank" aria-label="Contact on WhatsApp">
-        <i class="fa-brands fa-whatsapp text-2xl"></i>
-        <span>Contact Us</span>
-    </a>
+<div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="car-shoot">
+    <video src="car 22.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-4 left-4 pointer-events-none">
+        <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+            <i class="fa-solid fa-play mr-1"></i> Luxury Delivery
+        </span>
+    </div>
+</div>
 
-    <section class="pt-40 pb-20 px-6 relative">
-        <div class="bg-blob blob-teal w-96 h-96 top-0 right-0 -translate-y-1/3 translate-x-1/4"></div>
-        <div class="bg-blob blob-indigo w-[500px] h-[500px] bottom-0 left-0 translate-y-1/4 -translate-x-1/4 opacity-30"></div>
+<div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="car-shoot">
+    <video src="car 33.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-4 left-4 pointer-events-none">
+        <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+            <i class="fa-solid fa-play mr-1"></i> SUV Reveal
+        </span>
+    </div>
+</div>
 
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <div class="reveal flex flex-col items-center">
-                <span class="px-4 py-2 rounded-full bg-teal-50 text-teal-700 text-xs font-bold uppercase tracking-widest mb-6 inline-block">Innovate. Create. Elevate.</span>
-                <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-6 text-[#1F2532]">
-                    We Build <span class="gradient-text">Unforgettable</span> Digital Experiences
-                </h1>
-                <p class="text-lg text-slate-600 mb-8 max-w-xl mx-auto">
-                    UniKreate is a full-service creative engine. From viral social campaigns to breathtaking visual storytelling, we help brands stand out.
-                </p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="https://wa.me/919149379162" target="_blank" class="px-8 py-4 bg-[#1F2532] text-white font-bold rounded-xl hover:bg-teal-600 transition shadow-xl flex items-center gap-2">
-                        <i class="fa-brands fa-whatsapp"></i> Get a Free Audit
-                    </a>
-                    <a href="#services" class="px-8 py-4 border-2 border-slate-200 font-bold rounded-xl hover:bg-slate-50 transition">Explore Services</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="app-marketing">
+    <video src="app 11.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-4 left-4 pointer-events-none">
+        <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+            <i class="fa-solid fa-play mr-1"></i> Food App Ad
+        </span>
+    </div>
+</div>
 
-    <section id="services" class="py-24 bg-slate-50 px-6 relative overflow-hidden">
-        <div class="bg-blob blob-teal w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20"></div>
+<div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="app-marketing">
+    <video src="app 22.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-4 left-4 pointer-events-none">
+        <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+            <i class="fa-solid fa-play mr-1"></i> Gram App Delivery
+        </span>
+    </div>
+</div>
 
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl font-extrabold mb-4 text-[#1F2532]">Our Core Expertise</h2>
-                <p class="text-slate-500 max-w-2xl mx-auto">From strategy to production, we provide comprehensive creative services.</p>
-            </div>
+<div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="app-marketing">
+    <video src="app 33.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-4 left-4 pointer-events-none">
+        <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+            <i class="fa-solid fa-play mr-1"></i> Gram App Promo
+        </span>
+    </div>
+</div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-bullhorn"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Social Media Marketing</h3>
-                    <p class="text-slate-600">Organic growth strategies that build community and loyalty.</p>
-                </div>
-                
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-bullseye"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Google & Meta Ads</h3>
-                    <p class="text-slate-600">High-ROI paid campaigns targeting your ideal customers.</p>
-                </div>
+<div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="app-marketing">
+    <video src="app 44.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-4 left-4 pointer-events-none">
+        <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+            <i class="fa-solid fa-play mr-1"></i> Saifai Food Delivery
+        </span>
+    </div>
+</div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-green-50 text-green-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-chart-line"></i></div>
-                    <h3 class="text-xl font-bold mb-3">SEO & Analytics</h3>
-                    <p class="text-slate-600">Data-driven ranking strategies to boost organic visibility.</p>
-                </div>
+<div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="event-planner">
+    <video src="events 1.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-4 left-4 pointer-events-none">
+        <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+            <i class="fa-solid fa-play mr-1"></i> Ganglas Events
+        </span>
+    </div>
+</div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-chess-knight"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Marketing Strategy</h3>
-                    <p class="text-slate-600">Comprehensive roadmaps for long-term brand growth.</p>
-                </div>
+<div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="event-planner">
+    <video src="events 22.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-4 left-4 pointer-events-none">
+        <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+            <i class="fa-solid fa-play mr-1"></i> Paradise Grand Wedding
+        </span>
+    </div>
+</div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div id="web-icon-container" class="w-14 h-14 rounded-xl bg-indigo-50 flex items-center justify-center mb-6 overflow-hidden text-indigo-600 text-2xl">
-                         <img src="image_afcb58.png" 
-                              onerror="document.getElementById('web-icon-container').innerHTML='<i class=\'fa-solid fa-code\'></i>'" 
-                              alt="Web Development" 
-                              class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Web Development</h3>
-                    <p class="text-slate-600">High-performance, responsive websites that convert.</p>
-                </div>
+<div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="event-planner">
+    <video src="events 3.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-4 left-4 pointer-events-none">
+        <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+            <i class="fa-solid fa-play mr-1"></i> Product Launch
+        </span>
+    </div>
+</div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-palette"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Brand Designing</h3>
-                    <p class="text-slate-600">Visual identity systems, logos, and brand guidelines.</p>
-                </div>
+<div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="event-planner">
+    <video src="events 4.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-4 left-4 pointer-events-none">
+        <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+            <i class="fa-solid fa-play mr-1"></i> Corporate Event
+        </span>
+    </div>
+</div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-clapperboard"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Video Editing</h3>
-                    <p class="text-slate-600">Professional post-production for crisp, engaging content.</p>
-                </div>
-
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center text-2xl mb-6"><i class="fa-brands fa-instagram"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Reel Shoot</h3>
-                    <p class="text-slate-600">Trendy short-form content designed for viral reach.</p>
-                </div>
-
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-music"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Music Shoot</h3>
-                    <p class="text-slate-600">High-energy music videos that capture the vibe.</p>
-                </div>
-
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-film"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Short Film Shoot</h3>
-                    <p class="text-slate-600">Narrative storytelling with cinematic production quality.</p>
-                </div>
-
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-heart"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Pre Wedding Shoot</h3>
-                    <p class="text-slate-600">Cinematic storytelling of your love story.</p>
-                </div>
-
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-car"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Car Delivery Shoot</h3>
-                    <p class="text-slate-600">Premium cinematic reveals for your new vehicle.</p>
-                </div>
-
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-feather-pointed"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Professional Scripting</h3>
-                    <p class="text-slate-600">Compelling copy and scripts that hook audiences.</p>
-                </div>
-
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-robot"></i></div>
-                    <h3 class="text-xl font-bold mb-3">AI Voiceover</h3>
-                    <p class="text-slate-600">High-quality, realistic AI voice generation for content.</p>
-                </div>
-
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="w-14 h-14 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-pen-nib"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Graphic Designing</h3>
-                    <p class="text-slate-600">Posters, banners, and digital assets that pop.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-[#1F2532] border-y border-slate-700 relative overflow-hidden">
-        <div class="bg-blob blob-teal w-[400px] h-[400px] top-1/2 left-10 -translate-y-1/2 opacity-20"></div>
-        
-        <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
-            <div class="flex items-center gap-6">
-                <div class="hidden md:flex w-16 h-16 rounded-2xl bg-teal-500/10 items-center justify-center text-teal-400 text-3xl shadow-inner shadow-teal-500/20">
-                    <i class="fa-solid fa-laptop-code"></i>
-                </div>
-                <div class="text-center md:text-left">
-                    <h3 class="text-2xl font-bold text-white mb-1">Planning a New Website?</h3>
-                    <p class="text-slate-400">Get a <span class="text-teal-400 font-bold">Free Demo Design</span> session for your brand today.</p>
-                </div>
-            </div>
-
-            <form id="demoForm" class="flex flex-col sm:flex-row gap-3 w-full md:w-auto items-center">
-                <input type="hidden" name="service" value="Web Development Demo Request">
-                <input type="text" name="contact_number" placeholder="Enter WhatsApp Number" class="px-5 py-4 rounded-xl bg-slate-800 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:border-teal-500 w-full md:w-72 transition shadow-inner" required>
-                <button type="submit" class="w-full md:w-auto px-8 py-4 bg-teal-500 text-[#1F2532] font-bold rounded-xl hover:bg-teal-400 transition whitespace-nowrap shadow-lg shadow-teal-500/20 flex items-center justify-center gap-2">
-                    <span>Request Demo</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <section id="about" class="py-24 px-6 relative bg-white">
-        <div class="max-w-7xl mx-auto text-center reveal">
-            <h2 class="text-4xl font-extrabold mb-8 text-[#1F2532]">About UniKreate</h2>
-            <p class="text-slate-600 text-lg max-w-3xl mx-auto mb-10">
-                We are a team of passionate creators, strategists, and developers dedicated to transforming brands. 
-                With years of experience in the digital landscape, we bridge the gap between creative vision and market reality.
-            </p>
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div class="p-6 bg-slate-50 rounded-2xl">
-                    <h3 class="text-3xl font-bold text-teal-600 mb-2">50+</h3>
-                    <p class="font-semibold">Projects Delivered</p>
-                </div>
-                <div class="p-6 bg-slate-50 rounded-2xl">
-                    <h3 class="text-3xl font-bold text-teal-600 mb-2">98%</h3>
-                    <p class="font-semibold">Client Satisfaction</p>
-                </div>
-                <div class="p-6 bg-slate-50 rounded-2xl">
-                    <h3 class="text-3xl font-bold text-teal-600 mb-2">24/7</h3>
-                    <p class="font-semibold">Support</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="py-24 px-6 bg-slate-50">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12 reveal">
-                <h2 class="text-4xl font-extrabold mb-4 text-[#1F2532]">Our Recent Work</h2>
-                <p class="text-slate-500 mb-8">Browse our projects by category.</p>
-                
-                <!-- Filter Buttons -->
-                <div class="flex flex-wrap justify-center gap-3 mb-8" id="portfolio-filters">
-                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold transition-all bg-[#1F2532] text-white shadow-lg" data-filter="all">All</button>
-                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold text-slate-600 bg-white hover:bg-slate-100 transition-all" data-filter="website">Website (1)</button>
-                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold text-slate-600 bg-white hover:bg-slate-100 transition-all" data-filter="pre-wedding">Pre Wedding (2)</button>
-                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold text-slate-600 bg-white hover:bg-slate-100 transition-all" data-filter="car-shoot">Car Shoot (3)</button>
-                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold text-slate-600 bg-white hover:bg-slate-100 transition-all" data-filter="app-marketing">App Video (4)</button>
-                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold text-slate-600 bg-white hover:bg-slate-100 transition-all" data-filter="event-planner">Events (5)</button>
-                    <button class="filter-btn px-6 py-2 rounded-full border border-slate-200 font-bold text-slate-600 bg-white hover:bg-slate-100 transition-all" data-filter="graphic">Graphic (6)</button>
-                </div>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal transition-all duration-500">
-                
-                <!-- 1. WEBSITE (1 Project) -->
-                <a href="https://unikreate.github.io/UniKreate/" target="_blank" class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-slate-900 block border border-slate-700 shadow-lg cursor-pointer" data-category="website">
-                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
-                        <i class="fa-solid fa-robot text-4xl text-teal-400 mb-3"></i>
-                        <span class="text-white text-xl font-bold">UniKreate AI</span>
-                        <span class="text-slate-400 text-sm">Scripting & Idea Engine</span>
-                    </div>
-                    <div class="absolute inset-0 bg-teal-600/95 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-center p-4">
-                        <span class="text-white font-bold text-xl mb-2">AI Powered Tool</span>
-                        <p class="text-white/90 text-sm mb-4">My personal AI engine for automated script writing.</p>
-                        <span class="px-4 py-2 bg-white text-teal-800 rounded-full text-xs font-bold uppercase flex items-center gap-2">View Live <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-                    </div>
-                </a>
-
-                <!-- 2. PRE WEDDING (2 Projects) -->
-                <!-- Project 1: Actual Video Upload -->
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="pre-wedding">
-                    <video src="pre weddding11.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
-                        Your browser does not support the video tag.
-                    </video>
-                    <!-- Overlay Label (fades out when interacting/hovering if desired, but kept simple here) -->
-                    <div class="absolute top-4 left-4 pointer-events-none">
-                         <span class="bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
-                            <i class="fa-solid fa-play mr-1"></i> Featured
-                         </span>
-                    </div>
-                </div>
-
-                <!-- Project 2: Placeholder -->
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-rose-100" data-category="pre-wedding">
-                    <div class="absolute inset-0 flex items-center justify-center text-rose-300 text-4xl"><i class="fa-solid fa-ring"></i></div>
-                    <div class="absolute inset-0 bg-[#1F2532]/10 group-hover:bg-[#1F2532]/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Goa Destination</span>
-                        <span class="text-rose-200 text-sm opacity-0 group-hover:opacity-100 transition duration-300">Save the Date</span>
-                    </div>
-                </div>
-
-                <!-- 3. CAR SHOOT (3 Projects) -->
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-slate-200" data-category="car-shoot">
-                    <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-4xl"><i class="fa-solid fa-car-side"></i></div>
-                    <div class="absolute inset-0 bg-[#1F2532]/10 group-hover:bg-[#1F2532]/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Luxury Sedan Reveal</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-slate-200" data-category="car-shoot">
-                    <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-4xl"><i class="fa-solid fa-truck-pickup"></i></div>
-                    <div class="absolute inset-0 bg-[#1F2532]/10 group-hover:bg-[#1F2532]/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Off-Road Adventure</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-slate-200" data-category="car-shoot">
-                    <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-4xl"><i class="fa-solid fa-gauge-high"></i></div>
-                    <div class="absolute inset-0 bg-[#1F2532]/10 group-hover:bg-[#1F2532]/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Sports Edition</span>
-                    </div>
-                </div>
-
-                <!-- 4. APP MARKETING VIDEO (4 Projects) -->
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-blue-100" data-category="app-marketing">
-                    <div class="absolute inset-0 flex items-center justify-center text-blue-300 text-4xl"><i class="fa-solid fa-mobile-screen"></i></div>
-                    <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-blue-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Fintech App Promo</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-blue-100" data-category="app-marketing">
-                    <div class="absolute inset-0 flex items-center justify-center text-blue-300 text-4xl"><i class="fa-solid fa-burger"></i></div>
-                    <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-blue-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Food Delivery Ad</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-blue-100" data-category="app-marketing">
-                    <div class="absolute inset-0 flex items-center justify-center text-blue-300 text-4xl"><i class="fa-solid fa-dumbbell"></i></div>
-                    <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-blue-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Fitness App Story</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-blue-100" data-category="app-marketing">
-                    <div class="absolute inset-0 flex items-center justify-center text-blue-300 text-4xl"><i class="fa-solid fa-gamepad"></i></div>
-                    <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-blue-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Gaming App Teaser</span>
-                    </div>
-                </div>
-
-                <!-- 5. EVENT PLANNER VIDEO (5 Projects) -->
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-purple-100" data-category="event-planner">
-                    <div class="absolute inset-0 flex items-center justify-center text-purple-300 text-4xl"><i class="fa-solid fa-users"></i></div>
-                    <div class="absolute inset-0 bg-purple-900/10 group-hover:bg-purple-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Corporate Summit</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-purple-100" data-category="event-planner">
-                    <div class="absolute inset-0 flex items-center justify-center text-purple-300 text-4xl"><i class="fa-solid fa-music"></i></div>
-                    <div class="absolute inset-0 bg-purple-900/10 group-hover:bg-purple-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Music Festival 2025</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-purple-100" data-category="event-planner">
-                    <div class="absolute inset-0 flex items-center justify-center text-purple-300 text-4xl"><i class="fa-solid fa-rocket"></i></div>
-                    <div class="absolute inset-0 bg-purple-900/10 group-hover:bg-purple-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Product Launch</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-purple-100" data-category="event-planner">
-                    <div class="absolute inset-0 flex items-center justify-center text-purple-300 text-4xl"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                    <div class="absolute inset-0 bg-purple-900/10 group-hover:bg-purple-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Charity Gala</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-purple-100" data-category="event-planner">
-                    <div class="absolute inset-0 flex items-center justify-center text-purple-300 text-4xl"><i class="fa-solid fa-microphone"></i></div>
-                    <div class="absolute inset-0 bg-purple-900/10 group-hover:bg-purple-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Tech Conference</span>
-                    </div>
-                </div>
-
-                <!-- 6. GRAPHIC (6 Projects) -->
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-orange-100" data-category="graphic">
-                    <div class="absolute inset-0 flex items-center justify-center text-orange-300 text-4xl"><i class="fa-solid fa-layer-group"></i></div>
-                    <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-orange-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Social Media Kit</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-orange-100" data-category="graphic">
-                    <div class="absolute inset-0 flex items-center justify-center text-orange-300 text-4xl"><i class="fa-solid fa-bezier-curve"></i></div>
-                    <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-orange-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Brand Logo Set</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-orange-100" data-category="graphic">
-                    <div class="absolute inset-0 flex items-center justify-center text-orange-300 text-4xl"><i class="fa-solid fa-file-image"></i></div>
-                    <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-orange-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Marketing Flyers</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-orange-100" data-category="graphic">
-                    <div class="absolute inset-0 flex items-center justify-center text-orange-300 text-4xl"><i class="fa-solid fa-calendar-day"></i></div>
-                    <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-orange-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Event Posters</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-orange-100" data-category="graphic">
-                    <div class="absolute inset-0 flex items-center justify-center text-orange-300 text-4xl"><i class="fa-solid fa-address-card"></i></div>
-                    <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-orange-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Business Cards</span>
-                    </div>
-                </div>
-                <div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-orange-100" data-category="graphic">
-                    <div class="absolute inset-0 flex items-center justify-center text-orange-300 text-4xl"><i class="fa-solid fa-chart-pie"></i></div>
-                    <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-orange-900/80 transition duration-300 flex flex-col items-center justify-center">
-                        <span class="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition duration-300">Infographic Series</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-24 px-6 bg-[#1F2532] text-white">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
-            <div class="reveal">
-                <h2 class="text-4xl font-extrabold mb-6 leading-tight">Ready to <span class="text-teal-400">UniKreate</span> your brand?</h2>
-                <p class="text-slate-400 mb-10">Reach out to us directly on WhatsApp for the fastest response.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-[#D1C4A9]">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm text-slate-500 uppercase font-bold tracking-wider">Email Us</p>
-                            <p class="text-lg"><a href="mailto:unikreate@zohomail.in" class="hover:text-white transition">unikreate@zohomail.in</a></p>
-                        </div>
-                    </div>
-                    <a href="https://wa.me/919149379162" target="_blank" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-[#D1C4A9] group-hover:bg-green-600 group-hover:text-white transition">
-                            <i class="fa-brands fa-whatsapp text-xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm text-slate-500 uppercase font-bold tracking-wider">WhatsApp / Call</p>
-                            <p class="text-lg group-hover:text-green-400 transition">+91 91493 79162</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="bg-white p-8 rounded-3xl text-slate-900 reveal delay-200 shadow-2xl relative overflow-hidden">
-                <div class="bg-blob blob-teal w-40 h-40 top-0 right-0 translate-x-1/2 -translate-y-1/2 opacity-20"></div>
-
-                <form id="contactForm" class="space-y-4 relative z-10">
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-1">Name</label>
-                            <input type="text" name="name" placeholder="Amit Nayak" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500" required>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-1">Service</label>
-                            <select name="service" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500">
-                                <option>Social Media Marketing</option>
-                                <option>Google & Meta Ads</option>
-                                <option>SEO & Analytics</option>
-                                <option>Marketing Strategy</option>
-                                <option>Web Development</option>
-                                <option>Brand Designing</option>
-                                <option>Graphic Designing</option>
-                                <option>Video Editing</option>
-                                <option>Reel Shoot</option>
-                                <option>Music Shoot</option>
-                                <option>Short Film Shoot</option>
-                                <option>Pre Wedding Shoot</option>
-                                <option>Car Delivery Shoot</option>
-                                <option>Professional Scripting</option>
-                                <option>AI Voiceover</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">Email</label>
-                        <input type="email" name="email" placeholder="unikreate@zohomail.in" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">Message</label>
-                        <textarea rows="4" name="message" placeholder="Tell us about your project..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500" required></textarea>
-                    </div>
-                    <button type="submit" class="w-full py-4 bg-[#1F2532] text-white font-bold rounded-xl hover:bg-teal-600 transition">Send Inquiry</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-12 border-t border-slate-800 px-6 bg-[#0F1219] text-slate-400">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <img src="WhatsApp%20Image%202026-01-23%20at%202.54.09%20PM.png" 
-                     onerror="this.style.display='none'; document.getElementById('footer-fallback').style.display='flex';" 
-                     alt="UniKreate Logo" 
-                     class="h-12 w-auto object-contain brightness-0 invert">
-                
-                <div id="footer-fallback" style="display:none;" class="brand-logo brand-logo-light text-2xl">
-                    <span class="text-part">Uni</span>
-                    <svg class="icon-k" viewBox="0 0 65 100" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0" y="0" width="12" height="100" class="navy-fill" />
-                        <path d="M12 55 L65 100 L45 100 L0 55 Z" class="navy-fill" />
-                        <path d="M12 55 L60 15 L40 15 L0 55 Z" class="beige-fill" />
-                    </svg>
-                    <span class="text-part">reate</span>
-                </div>
-            </div>
-
-            <p class="text-sm">© 2026 UniKreate Digital. All rights reserved.</p>
-            <div class="flex gap-4">
-                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-teal-600 hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-teal-600 hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Scroll Reveal
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        window.addEventListener("load", reveal);
-
-        // Portfolio Filter Logic
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const projectItems = document.querySelectorAll('.project-item');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active styling from all buttons
-                filterBtns.forEach(b => {
-                    b.classList.remove('bg-[#1F2532]', 'text-white', 'shadow-lg');
-                    b.classList.add('bg-white', 'text-slate-600');
-                });
-                
-                // Add active styling to clicked button
-                btn.classList.remove('bg-white', 'text-slate-600');
-                btn.classList.add('bg-[#1F2532]', 'text-white', 'shadow-lg');
-
-                const filterValue = btn.getAttribute('data-filter');
-
-                projectItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.classList.remove('hidden');
-                        // Add a small animation effect when showing
-                        item.classList.add('animate-fade-in'); 
-                        setTimeout(() => item.classList.remove('animate-fade-in'), 500);
-                    } else {
-                        item.classList.add('hidden');
-                    }
-                });
-                
-                // Re-trigger scroll reveal if needed
-                reveal();
-            });
-        });
-
-        // Mobile Menu Logic (Fixed for smoother transition)
-        const menuBtn = document.getElementById('menuBtn');
-        const closeBtn = document.getElementById('closeBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const links = document.querySelectorAll('.mob-link');
-
-        function toggleMenu(show) {
-            if(show) {
-                mobileMenu.classList.remove('hidden');
-                // Small delay to allow 'hidden' removal to register before opacity transition
-                requestAnimationFrame(() => {
-                    mobileMenu.classList.remove('opacity-0');
-                });
-            } else {
-                mobileMenu.classList.add('opacity-0');
-                // Wait for transition to finish before hiding
-                setTimeout(() => {
-                    mobileMenu.classList.add('hidden');
-                }, 300);
-            }
-        }
-
-        menuBtn.addEventListener('click', () => toggleMenu(true));
-        closeBtn.addEventListener('click', () => toggleMenu(false));
-        links.forEach(l => l.addEventListener('click', () => toggleMenu(false)));
-
-        // Form Handling (Combined Logic)
-        async function handleFormSubmit(e, formId) {
-            e.preventDefault();
-            const form = document.getElementById(formId);
-            const button = form.querySelector('button');
-            const originalContent = button.innerHTML;
-            
-            // Loading State
-            button.disabled = true;
-            button.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending...';
-
-            const formData = new FormData(form);
-
-            try {
-                // Submit to Formspree
-                const response = await fetch('https://formspree.io/f/xjgyovqq', {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    // Success Notification
-                    const messageBox = document.createElement('div');
-                    messageBox.className = 'fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-xl shadow-2xl z-[150] animate-bounce';
-                    messageBox.innerHTML = '<i class="fa-solid fa-check-circle mr-2"></i> Sent Successfully!';
-                    document.body.appendChild(messageBox);
-                    setTimeout(() => messageBox.remove(), 4000);
-                    form.reset();
-                } else {
-                    throw new Error('Submission failed');
-                }
-            } catch (error) {
-                // Error Notification
-                const messageBox = document.createElement('div');
-                messageBox.className = 'fixed bottom-8 right-8 bg-red-500 text-white p-4 rounded-xl shadow-2xl z-[150]';
-                messageBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-2"></i> Error. Please WhatsApp us.';
-                document.body.appendChild(messageBox);
-                setTimeout(() => messageBox.remove(), 4000);
-            } finally {
-                // Reset Button
-                button.innerHTML = originalContent;
-                button.disabled = false;
-            }
-        }
-
-        document.getElementById('contactForm').addEventListener('submit', (e) => handleFormSubmit(e, 'contactForm'));
-        document.getElementById('demoForm').addEventListener('submit', (e) => handleFormSubmit(e, 'demoForm'));
-    </script>
-</body>
-</html>
+<div class="project-item group relative overflow-hidden rounded-2xl aspect-video bg-black shadow-xl border border-slate-800" data-category="event-planner">
+    <video src="events 5.mp4" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500" controls preload="metadata">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-4 left-4 pointer-events-none">
+        <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+            <i class="fa-solid fa-play mr-1"></i> Birthday Bash
+        </span>
+    </div>
+</div>
