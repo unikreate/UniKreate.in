@@ -15,6 +15,18 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
     
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "UniKreate",
+      "url": "https://unikreate.github.io",
+      "logo": "WhatsApp%20Image%202026-01-23%20at%202.54.09%20PM.png",
+      "description": "Full service digital marketing agency, web development, and creative branding services."
+    }
+    </script>
+
     <style>
         /* --- BRAND CONFIGURATION --- */
         :root {
@@ -69,13 +81,8 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .service-card { transition: all 0.3s ease; z-index: 10; position: relative; }
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            border-color: var(--brand-teal);
-        }
-
+        .service-card { transition: transform 0.3s ease, box-shadow 0.3s ease; z-index: 10; position: relative; }
+        
         .gradient-text {
             background: linear-gradient(135deg, var(--brand-navy), var(--brand-teal));
             -webkit-background-clip: text;
@@ -91,6 +98,17 @@
         .filter-inactive {
             background-color: #ffffff;
             color: #475569; /* slate-600 */
+        }
+
+        /* Portfolio Items Transition */
+        .project-item {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .project-item.is-hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+            /* We handle display:none in JS after transition to prevent layout jumps during fade */
         }
 
         /* --- BACKGROUND DECORATIONS --- */
@@ -111,6 +129,64 @@
             0% { transform: translate(0, 0) scale(1); }
             50% { transform: translate(20px, -20px) scale(1.1); }
             100% { transform: translate(0, 0) scale(1); }
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        /* Hide default cursor only if custom cursor is enabled */
+        body:not(.no-custom-cursor) {
+            cursor: none;
+        }
+
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            display: none; /* Hidden by default, shown via JS if applicable */
+        }
+
+        /* Show cursor elements when not disabled */
+        body:not(.no-custom-cursor) .cursor-dot,
+        body:not(.no-custom-cursor) .cursor-outline {
+            display: block;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--brand-teal);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--brand-teal);
+            /* Performance: Use CSS transition instead of JS animation loop */
+            transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background-color 0.2s, left 0.1s linear, top 0.1s linear; 
+        }
+
+        /* Cursor Hover State */
+        body.hovering .cursor-outline {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(20, 184, 166, 0.1);
+            border-color: transparent;
+        }
+
+        /* --- TYPEWRITER CURSOR --- */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: var(--brand-teal);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         /* --- WHATSAPP FLOATING BUTTON --- */
@@ -155,17 +231,13 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body class="bg-white overflow-x-hidden">
+
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
 
     <nav class="fixed w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
@@ -201,7 +273,8 @@
         </div>
     </nav>
 
-    <div id="mobileMenu" class="fixed inset-0 bg-white z-[60] flex flex-col items-center justify-center gap-8 text-2xl font-bold hidden opacity-0 transition-opacity duration-300">
+    <!-- Mobile Menu: Using opacity and pointer-events for smooth transitions -->
+    <div id="mobileMenu" class="fixed inset-0 bg-white z-[60] flex flex-col items-center justify-center gap-8 text-2xl font-bold opacity-0 pointer-events-none transition-opacity duration-300">
         <button class="absolute top-6 right-6 text-4xl" id="closeBtn" aria-label="Close Menu">&times;</button>
         <a href="#services" class="mob-link hover:text-teal-600">Services</a>
         <a href="#about" class="mob-link hover:text-teal-600">About</a>
@@ -224,7 +297,7 @@
             <div class="reveal flex flex-col items-center">
                 <span class="px-4 py-2 rounded-full bg-teal-50 text-teal-700 text-xs font-bold uppercase tracking-widest mb-6 inline-block">Innovate. Create. Elevate.</span>
                 <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-6 text-[#1F2532]">
-                    Your AI-Powered <span class="gradient-text">Creative Engine</span> for Scripts & Content
+                    We Create <span class="gradient-text typing-cursor" id="typewriter"></span>
                 </h1>
                 <p class="text-lg text-slate-600 mb-8 max-w-xl mx-auto">
                     UniKreate is a full-service creative agency. From viral social campaigns and automated scripting to breathtaking visual storytelling, we help brands stand out.
@@ -250,31 +323,31 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Service Cards -->
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-bullhorn"></i></div>
                     <h3 class="text-xl font-bold mb-3">Social Media Marketing</h3>
                     <p class="text-slate-600">Organic growth strategies that build community and loyalty.</p>
                 </div>
                 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-bullseye"></i></div>
                     <h3 class="text-xl font-bold mb-3">Google & Meta Ads</h3>
                     <p class="text-slate-600">High-ROI paid campaigns targeting your ideal customers.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-green-50 text-green-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-chart-line"></i></div>
                     <h3 class="text-xl font-bold mb-3">SEO & Analytics</h3>
                     <p class="text-slate-600">Data-driven ranking strategies to boost organic visibility.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-chess-knight"></i></div>
                     <h3 class="text-xl font-bold mb-3">Marketing Strategy</h3>
                     <p class="text-slate-600">Comprehensive roadmaps for long-term brand growth.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div id="web-icon-container-1" class="w-14 h-14 rounded-xl bg-indigo-50 flex items-center justify-center mb-6 overflow-hidden text-indigo-600 text-2xl">
                          <img src="image_afcb58.png" 
                               id="web-dev-img"
@@ -285,113 +358,64 @@
                     <p class="text-slate-600">High-performance, responsive websites that convert.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-palette"></i></div>
                     <h3 class="text-xl font-bold mb-3">Brand Designing</h3>
                     <p class="text-slate-600">Visual identity systems, logos, and brand guidelines.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-clapperboard"></i></div>
                     <h3 class="text-xl font-bold mb-3">Video Editing</h3>
                     <p class="text-slate-600">Professional post-production for crisp, engaging content.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center text-2xl mb-6"><i class="fa-brands fa-instagram"></i></div>
                     <h3 class="text-xl font-bold mb-3">Reel Shoot</h3>
                     <p class="text-slate-600">Trendy short-form content designed for viral reach.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-music"></i></div>
                     <h3 class="text-xl font-bold mb-3">Music Shoot</h3>
                     <p class="text-slate-600">High-energy music videos that capture the vibe.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-film"></i></div>
                     <h3 class="text-xl font-bold mb-3">Short Film Shoot</h3>
                     <p class="text-slate-600">Narrative storytelling with cinematic production quality.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-heart"></i></div>
                     <h3 class="text-xl font-bold mb-3">Pre Wedding Shoot</h3>
                     <p class="text-slate-600">Cinematic storytelling of your love story.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-car"></i></div>
                     <h3 class="text-xl font-bold mb-3">Car Delivery Shoot</h3>
                     <p class="text-slate-600">Premium cinematic reveals for your new vehicle.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-feather-pointed"></i></div>
                     <h3 class="text-xl font-bold mb-3">Professional Scripting</h3>
                     <p class="text-slate-600">Compelling copy and scripts that hook audiences.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-robot"></i></div>
                     <h3 class="text-xl font-bold mb-3">AI Voiceover</h3>
                     <p class="text-slate-600">High-quality, realistic AI voice generation for content.</p>
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal">
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal tilt-card">
                     <div class="w-14 h-14 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-pen-nib"></i></div>
                     <h3 class="text-xl font-bold mb-3">Graphic Designing</h3>
                     <p class="text-slate-600">Posters, banners, and digital assets that pop.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-[#1F2532] border-y border-slate-700 relative overflow-hidden">
-        <div class="bg-blob blob-teal w-[400px] h-[400px] top-1/2 left-10 -translate-y-1/2 opacity-20"></div>
-        
-        <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
-            <div class="flex items-center gap-6">
-                <div class="hidden md:flex w-16 h-16 rounded-2xl bg-teal-500/10 items-center justify-center text-teal-400 text-3xl shadow-inner shadow-teal-500/20">
-                    <i class="fa-solid fa-laptop-code"></i>
-                </div>
-                <div class="text-center md:text-left">
-                    <h3 class="text-2xl font-bold text-white mb-1">Planning a New Website?</h3>
-                    <p class="text-slate-400">Get a <span class="text-teal-400 font-bold">Free Demo Design</span> session for your brand today.</p>
-                </div>
-            </div>
-
-            <form id="demoForm" class="flex flex-col sm:flex-row gap-3 w-full md:w-auto items-center">
-                <input type="hidden" name="service" value="Web Development Demo Request">
-                <input type="text" name="contact_number" placeholder="Enter WhatsApp Number" class="px-5 py-4 rounded-xl bg-slate-800 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:border-teal-500 w-full md:w-72 transition shadow-inner" required aria-label="Enter WhatsApp Number">
-                <button type="submit" class="w-full md:w-auto px-8 py-4 bg-teal-500 text-[#1F2532] font-bold rounded-xl hover:bg-teal-400 transition whitespace-nowrap shadow-lg shadow-teal-500/20 flex items-center justify-center gap-2">
-                    <span>Request Demo</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <section id="about" class="py-24 px-6 relative bg-white">
-        <div class="max-w-7xl mx-auto text-center reveal">
-            <h2 class="text-4xl font-extrabold mb-8 text-[#1F2532]">About UniKreate</h2>
-            <p class="text-slate-600 text-lg max-w-3xl mx-auto mb-10">
-                We are a team of passionate creators, strategists, and developers dedicated to transforming brands. 
-                With years of experience in the digital landscape, we bridge the gap between creative vision and market reality.
-            </p>
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div class="p-6 bg-slate-50 rounded-2xl">
-                    <h3 class="text-3xl font-bold text-teal-600 mb-2">50+</h3>
-                    <p class="font-semibold">Projects Delivered</p>
-                </div>
-                <div class="p-6 bg-slate-50 rounded-2xl">
-                    <h3 class="text-3xl font-bold text-teal-600 mb-2">98%</h3>
-                    <p class="font-semibold">Client Satisfaction</p>
-                </div>
-                <div class="p-6 bg-slate-50 rounded-2xl">
-                    <h3 class="text-3xl font-bold text-teal-600 mb-2">24/7</h3>
-                    <p class="font-semibold">Support</p>
                 </div>
             </div>
         </div>
@@ -597,7 +621,7 @@
                         <label class="block text-sm font-bold text-slate-700 mb-1">Message</label>
                         <textarea rows="4" name="message" placeholder="Tell us about your project..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500" required aria-label="Message"></textarea>
                     </div>
-                    <button type="submit" class="w-full py-4 bg-[#1F2532] text-white font-bold rounded-xl hover:bg-teal-600 transition">Send Inquiry</button>
+                    <button type="submit" data-submit class="w-full py-4 bg-[#1F2532] text-white font-bold rounded-xl hover:bg-teal-600 transition">Send Inquiry</button>
                 </form>
             </div>
         </div>
@@ -631,53 +655,77 @@
     </footer>
 
     <script>
+        // Constants
+        const FORM_ENDPOINT = 'https://formspree.io/f/xjgyovqq';
+        const videos = [...document.querySelectorAll('video')];
+        const cards = [...document.querySelectorAll('.tilt-card')];
+        const reveals = document.querySelectorAll(".reveal");
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+        const menuBtn = document.getElementById('menuBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const links = document.querySelectorAll('.mob-link');
+        const contactForm = document.getElementById('contactForm');
+        const demoForm = document.getElementById('demoForm');
+
         // --- 1. PERFORMANCE: INTERSECTION OBSERVER FOR SCROLL REVEAL ---
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15 // Trigger when 15% of element is visible
-        };
+        // Reduced motion check
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Only animate once
-                }
-            });
-        }, observerOptions);
+        if (reduceMotion) {
+            reveals.forEach(el => el.classList.add('active'));
+        } else {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 
+            };
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll(".reveal");
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        obs.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
             reveals.forEach(el => observer.observe(el));
-        });
+        }
 
         // --- 2. PERFORMANCE: VIDEO LAZY LOADING & AUTO-PAUSE ---
-        const videos = document.querySelectorAll('video');
+        // Lazy load video metadata
+        const videoObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.preload = "metadata";
+                    videoObserver.unobserve(entry.target);
+                }
+            });
+        });
+        
+        videos.forEach(v => videoObserver.observe(v));
+
+        // Auto-pause others
         videos.forEach(video => {
             video.addEventListener('play', () => {
-                // Pause other videos when one starts playing
                 videos.forEach(v => {
-                    if (v !== video) {
+                    if (v !== video && !v.paused) {
                         v.pause();
                     }
                 });
             });
         });
 
-        // --- 3. FILTER LOGIC (CDN SAFE) ---
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const projectItems = document.querySelectorAll('.project-item');
-
+        // --- 3. FILTER LOGIC (Robust) ---
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-
                 // Button styling
                 filterBtns.forEach(b => {
                     b.classList.remove('filter-active');
                     b.classList.add('filter-inactive');
                 });
-
                 btn.classList.add('filter-active');
                 btn.classList.remove('filter-inactive');
 
@@ -685,34 +733,39 @@
 
                 projectItems.forEach(item => {
                     const match = filterValue === 'all' || item.dataset.category === filterValue;
-                    item.hidden = !match;
-
+                    
                     if (match) {
-                        item.classList.add('animate-fade-in');
-                        setTimeout(() => item.classList.remove('animate-fade-in'), 500);
-                        observer.observe(item); // Re-trigger reveal after filtering
+                        item.hidden = false;
+                        // Trigger reflow to restart transition if needed, or simply remove is-hidden
+                        // Using a small timeout to allow display:block to apply before opacity transition
+                        requestAnimationFrame(() => {
+                            item.classList.remove('is-hidden');
+                        });
+                    } else {
+                        item.classList.add('is-hidden');
+                        // Wait for transition to finish before hiding (0.3s)
+                        setTimeout(() => {
+                            if (item.classList.contains('is-hidden')) {
+                                item.hidden = true;
+                            }
+                        }, 300); 
                     }
                 });
             });
         });
 
-        // --- 4. MOBILE MENU (Smooth & Correct) ---
-        const menuBtn = document.getElementById('menuBtn');
-        const closeBtn = document.getElementById('closeBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const links = document.querySelectorAll('.mob-link');
-
+        // --- 4. MOBILE MENU (Safe Toggle) ---
         function toggleMenu(show) {
             if (show) {
-                mobileMenu.classList.remove('hidden');
-                mobileMenu.classList.add('flex');
-                requestAnimationFrame(() => mobileMenu.classList.remove('opacity-0'));
+                // Remove pointer-events-none to make it interactive
+                mobileMenu.classList.remove('pointer-events-none');
+                // Remove opacity-0 to fade it in
+                mobileMenu.classList.remove('opacity-0');
             } else {
+                // Add opacity-0 to fade out
                 mobileMenu.classList.add('opacity-0');
-                setTimeout(() => {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('flex');
-                }, 300);
+                // Disable pointer events immediately so user can't click while fading
+                mobileMenu.classList.add('pointer-events-none');
             }
         }
 
@@ -720,7 +773,7 @@
         if(closeBtn) closeBtn.addEventListener('click', () => toggleMenu(false));
         links.forEach(l => l.addEventListener('click', () => toggleMenu(false)));
 
-        // --- 5. IMAGE ERROR HANDLING (Event Delegation for cleaner HTML) ---
+        // --- 5. IMAGE ERROR HANDLING ---
         const webDevImg = document.getElementById('web-dev-img');
         if(webDevImg) {
             webDevImg.onerror = function() {
@@ -742,7 +795,7 @@
         async function handleFormSubmit(e, formId) {
             e.preventDefault();
             const form = document.getElementById(formId);
-            const button = form.querySelector('button');
+            const button = form.querySelector('[data-submit]');
             const originalContent = button.innerHTML;
             
             button.disabled = true;
@@ -751,7 +804,7 @@
             const formData = new FormData(form);
 
             try {
-                const response = await fetch('https://formspree.io/f/xjgyovqq', {
+                const response = await fetch(FORM_ENDPOINT, {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
@@ -782,11 +835,104 @@
             setTimeout(() => messageBox.remove(), 4000);
         }
 
-        const contactForm = document.getElementById('contactForm');
         if(contactForm) contactForm.addEventListener('submit', (e) => handleFormSubmit(e, 'contactForm'));
-        
-        const demoForm = document.getElementById('demoForm');
         if(demoForm) demoForm.addEventListener('submit', (e) => handleFormSubmit(e, 'demoForm'));
+
+        // --- 7. ENTERTAINING ELEMENTS LOGIC ---
+
+        // A. Custom Cursor Logic (Accessible)
+        // Check for fine pointer (mouse) and no reduced motion preference
+        const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+        
+        if (!hasFinePointer || reduceMotion) {
+            document.body.classList.add('no-custom-cursor');
+        } else {
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                // Direct style update for better performance than animate()
+                if(cursorDot) {
+                    cursorDot.style.left = `${posX}px`;
+                    cursorDot.style.top = `${posY}px`;
+                }
+                
+                if(cursorOutline) {
+                    cursorOutline.style.left = `${posX}px`;
+                    cursorOutline.style.top = `${posY}px`;
+                }
+            });
+
+            // Hover Effect on clickable elements
+            const clickableElements = document.querySelectorAll('a, button, input, select, textarea, .service-card');
+            clickableElements.forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+            });
+        }
+
+        // B. Typewriter Effect
+        const words = ["Digital Experiences", "Viral Campaigns", "Brand Stories", "Visual Magic"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typeSpeed = 100;
+        const deleteSpeed = 50;
+        const pauseTime = 2000;
+        const typeElement = document.getElementById('typewriter');
+
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typeElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typeElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let nextSpeed = isDeleting ? deleteSpeed : typeSpeed;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                nextSpeed = pauseTime;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                nextSpeed = 500;
+            }
+
+            setTimeout(type, nextSpeed);
+        }
+
+        if(typeElement) document.addEventListener('DOMContentLoaded', type);
+
+        // C. 3D Tilt Effect for Service Cards (Disable on mobile)
+        if (hasFinePointer && !reduceMotion) {
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * 10; 
+                    const rotateY = ((centerX - x) / centerX) * 10;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                });
+            });
+        }
 
     </script>
 </body>
