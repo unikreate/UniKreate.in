@@ -368,7 +368,8 @@
 
         menuBtn.addEventListener('click', () => toggleMenu(true));
         closeBtn.addEventListener('click', () => toggleMenu(false));
-        links.forEach(l => l.addEventListener('click', () => toggleMenu(false));
+        // Fixed syntax error here:
+        links.forEach(l => l.addEventListener('click', () => toggleMenu(false)));
 
         // Contact Form
         document.getElementById('contactForm').addEventListener('submit', function(e) {
