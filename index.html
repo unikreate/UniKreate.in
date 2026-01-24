@@ -149,20 +149,26 @@
         .marquee-item i { color: var(--brand-teal); font-size: 0.8em; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- CUSTOM CURSOR (Desktop Only) --- */
-        @media (hover: hover) and (pointer: fine) {
-            body { cursor: none; }
-            .cursor-dot, .cursor-outline { display: block; }
-        }
+        /* --- CUSTOM CURSOR (FIXED) --- */
+        /* Only apply cursor: none if the JS has confirmed we are on desktop */
+        body.custom-cursor-enabled { cursor: none; }
+        
         .cursor-dot, .cursor-outline {
             position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-            border-radius: 50%; z-index: 10000; pointer-events: none; display: none;
+            border-radius: 50%; pointer-events: none;
+            /* Initially transparent, fade in via JS */
+            opacity: 0; 
+            transition: opacity 0.3s ease, transform 0.1s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+            /* Super high z-index to stay on top */
+            z-index: 99999;
         }
+
         .cursor-dot { width: 8px; height: 8px; background-color: white; mix-blend-mode: difference; }
         .cursor-outline {
             width: 40px; height: 40px; border: 1px solid white; background-color: rgba(255, 255, 255, 0.1);
-            mix-blend-mode: difference; transition: transform 0.15s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+            mix-blend-mode: difference;
         }
+        
         body.hovering .cursor-outline {
             width: 80px; height: 80px; background-color: rgba(255, 255, 255, 0.4); border-color: transparent; mix-blend-mode: difference;
         }
@@ -757,13 +763,24 @@
                 const cursorOutline = document.querySelector('.cursor-outline');
                 const blobs = document.querySelectorAll('.bg-blob');
 
+                // We add the class to hide system cursor only if this check passes
+                document.body.classList.add('custom-cursor-enabled');
+
                 window.addEventListener('mousemove', (e) => {
                     const posX = e.clientX;
                     const posY = e.clientY;
                     
-                    // Move Cursor
-                    if(cursorDot) { cursorDot.style.left = `${posX}px`; cursorDot.style.top = `${posY}px`; }
-                    if(cursorOutline) { cursorOutline.style.left = `${posX}px`; cursorOutline.style.top = `${posY}px`; }
+                    // Show custom cursor on first move
+                    if(cursorDot) {
+                        cursorDot.style.opacity = '1';
+                        cursorDot.style.left = `${posX}px`;
+                        cursorDot.style.top = `${posY}px`;
+                    }
+                    if(cursorOutline) {
+                        cursorOutline.style.opacity = '1';
+                        cursorOutline.style.left = `${posX}px`;
+                        cursorOutline.style.top = `${posY}px`;
+                    }
 
                     // Move Blobs (Parallax)
                     blobs.forEach(blob => {
