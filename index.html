@@ -676,6 +676,15 @@
                 });
             });
 
+            // --- PORTFOLIO FILTERS ---
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('filter-active');
+                        b.classList.add('filter-inactive');
+                    });
+                    btn.classList.add('filter-active');
+                    btn.classList.remove('filter-inactive');
 
                     const filterValue = btn.dataset.filter;
                     projectItems.forEach(item => {
