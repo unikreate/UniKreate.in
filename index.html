@@ -1,589 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unikreate — Premium Creative Agency</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'unik-dark': '#0f0f1a',
-                        'unik-charcoal': '#1a1a2e',
-                        'unik-gold': '#c9b896',
-                        'unik-gold-light': '#ddd4c0',
-                        'unik-gold-dark': '#a8996e',
-                        'unik-cream': '#f5f3ef',
-                        'unik-gray': '#8a8a9a',
-                    },
-                    fontFamily: {
-                        'serif': ['Playfair Display', 'serif'],
-                        'sans': ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        * { scroll-behavior: smooth; }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f0f1a;
-            color: #f5f3ef;
-            overflow-x: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UniKreate — Marketing Agency | Video Editing, Social Media, Ads</title>
+<meta name="description" content="UniKreate — vibrant marketing agency for video editing, social media management and ads. First reel FREE. Monthly package ₹18,000.">
+<link rel="icon" type="image/png" href="dp.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dark:#0b1220; --dark2:#101a30; --card:#111d36;
+    --teal:#00b8b8; --cyan:#19c2dc;
+    --orange:#ff7a18; --pink:#ff2e88;
+    --text:#eef2f7; --muted:#a8b3c5; --line:#1e2c4e;
+    --grad:linear-gradient(90deg,var(--teal),var(--cyan),var(--orange),var(--pink));
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--dark);color:var(--text);line-height:1.6;overflow-x:hidden}
+  h1,h2,h3{font-family:'Poppins',sans-serif;line-height:1.2}
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+  .grad-text{background:var(--grad);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+  @keyframes shine{to{background-position:200% center}}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
 
-        .serif { font-family: 'Playfair Display', serif; }
+  /* Header */
+  header{position:sticky;top:0;z-index:50;background:rgba(11,18,32,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:14px}
+  .nav img{height:44px;width:auto}
+  .links{display:flex;gap:24px;font-weight:500;font-size:15px}
+  .links a{color:var(--muted)} .links a:hover{color:#fff}
+  .btn{display:inline-block;padding:12px 24px;border-radius:999px;font-weight:600;font-size:15px;transition:.25s;border:none;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.35)}
+  .btn-wa{background:#25d366;color:#06280f}
+  .btn-grad{background:linear-gradient(90deg,var(--teal),var(--pink));color:#fff}
+  .btn-ghost{border:1px solid #33436b;color:#fff;background:transparent}
+  @media(max-width:760px){.links{display:none}.nav img{height:36px}}
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f0f1a; }
-        ::-webkit-scrollbar-thumb { background: #c9b896; border-radius: 4px; }
+  /* Hero */
+  .hero{position:relative;padding:96px 0 76px;text-align:center;background:radial-gradient(60% 90% at 50% 0%,#16294e 0%,var(--dark) 72%)}
+  .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none}
+  .b1{width:280px;height:280px;background:#0e5f6e;top:-60px;left:-60px}
+  .b2{width:260px;height:260px;background:#5e1038;top:10px;right:-70px}
+  .badge{display:inline-block;padding:6px 16px;border:1px solid #2a3c66;border-radius:999px;color:var(--muted);font-size:13px;margin-bottom:22px;background:rgba(255,255,255,.03)}
+  .hero h1{font-size:clamp(36px,6.4vw,62px);font-weight:800}
+  .hero p{color:var(--muted);max-width:660px;margin:20px auto 32px;font-size:17px}
+  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .trust{margin-top:30px;color:var(--muted);font-size:14px}
+  .trust b{color:#fff}
 
-        /* Animations */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+  /* Stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:34px 0 6px}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{text-align:center;background:var(--dark2);border:1px solid var(--line);border-radius:16px;padding:20px 10px}
+  .stat .num{font-family:'Poppins';font-size:26px;font-weight:800}
+  .stat .lbl{color:var(--muted);font-size:13px;margin-top:2px}
 
-        .fade-in {
-            opacity: 0;
-            transition: opacity 1.2s ease;
-        }
-        .fade-in.visible { opacity: 1; }
+  /* Sections */
+  section{padding:72px 0}
+  .sec-head{text-align:center;margin-bottom:42px}
+  .sec-head h2{font-size:clamp(26px,4vw,38px);font-weight:700}
+  .sec-head p{color:var(--muted);margin-top:8px}
+  .grid{display:grid;gap:20px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:860px){.g3{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;transition:.25s}
+  .card:hover{transform:translateY(-5px);border-color:#2f4472}
+  .card h3{font-size:19px;margin:12px 0 8px}
+  .card p{color:var(--muted);font-size:15px}
+  .icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;background:#0e2a38}
+  .icon.p{background:#33102a}.icon.o{background:#38200c}
+  .step-num{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--pink));display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:800;font-size:18px;color:#fff}
 
-        /* Gold gradient text */
-        .text-gold-gradient {
-            background: linear-gradient(135deg, #c9b896 0%, #f0e6d3 50%, #a8996e 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+  /* Work */
+  .work-tile{border-radius:18px;padding:34px 24px;text-align:center;font-family:'Poppins';font-weight:700;font-size:19px;color:#fff;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:.25s}
+  .work-tile:hover{transform:translateY(-5px) scale(1.01)}
+  .work-tile span{font-family:'Inter';font-weight:400;font-size:14px;opacity:.88}
+  .w1{background:linear-gradient(135deg,#00b8b8,#0e7cc4)}
+  .w2{background:linear-gradient(135deg,#ff7a18,#ff2e63)}
+  .w3{background:linear-gradient(135deg,#7b2ff7,#ff2e88)}
+  .play{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:20px}
 
-        /* Button hover effects */
-        .btn-gold {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-        .btn-gold::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s ease;
-        }
-        .btn-gold:hover::before { left: 100%; }
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(201, 184, 150, 0.3);
-        }
+  /* Pricing */
+  .price .amount{font-family:'Poppins';font-size:36px;font-weight:800;margin:8px 0 2px}
+  .price .per{color:var(--muted);font-size:14px}
+  .price ul{list-style:none;color:var(--muted);font-size:15px;margin:16px 0 24px}
+  .price ul li{padding:5px 0}
+  .price ul li::before{content:"✓ ";color:var(--teal);font-weight:700}
+  .popular{border:1px solid var(--pink);position:relative;background:linear-gradient(180deg,#161f3d,#111d36)}
+  .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--teal),var(--pink));color:#fff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:999px;white-space:nowrap}
+  .save{display:inline-block;margin-top:6px;background:#0e2a38;color:#3fe0c5;font-size:13px;font-weight:600;padding:3px 12px;border-radius:999px}
 
-        /* Card hover */
-        .team-card {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid rgba(201, 184, 150, 0.1);
-        }
-        .team-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(201, 184, 150, 0.3);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto}
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px}
+  summary{font-family:'Poppins';font-weight:600;cursor:pointer;font-size:16px}
+  details p{color:var(--muted);font-size:15px;margin-top:8px}
 
-        /* Skill tag */
-        .skill-tag {
-            background: rgba(201, 184, 150, 0.08);
-            border: 1px solid rgba(201, 184, 150, 0.15);
-            transition: all 0.3s ease;
-        }
-        .skill-tag:hover {
-            background: rgba(201, 184, 150, 0.15);
-            border-color: rgba(201, 184, 150, 0.4);
-        }
+  /* About + Contact */
+  .about{background:var(--dark2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .about .wrap{display:flex;gap:34px;align-items:center;flex-wrap:wrap}
+  .about img.dp{width:150px;height:150px;border-radius:28px;background:#fff;padding:10px}
+  .about .txt{flex:1;min-width:260px}
+  .about p{color:var(--muted);margin-top:10px}
+  .contact{text-align:center}
+  .contact p{color:var(--muted);margin:10px auto 26px;max-width:540px}
+  footer{padding:30px 0;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+  footer img{height:34px;margin-bottom:8px}
 
-        /* Hero background grain */
-        .grain {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 50;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* Link underline animation */
-        .link-underline {
-            position: relative;
-        }
-        .link-underline::after {
-            content: '';
-            position: absolute;
-            width: 0; height: 1px;
-            bottom: -2px; left: 0;
-            background-color: #c9b896;
-            transition: width 0.3s ease;
-        }
-        .link-underline:hover::after { width: 100%; }
-
-        /* Portfolio card */
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-        }
-        .portfolio-item::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(15,15,26,0.9) 0%, transparent 60%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .portfolio-item:hover::after { opacity: 1; }
-        .portfolio-item .portfolio-content {
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-        .portfolio-item:hover .portfolio-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* Navigation blur */
-        .nav-blur {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        /* Logo recreation styling */
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: -0.02em;
-        }
-        .logo-k {
-            position: relative;
-            display: inline-block;
-        }
-        .logo-k::after {
-            content: '';
-            position: absolute;
-            width: 8px;
-            height: 28px;
-            background: linear-gradient(135deg, #c9b896, #ddd4c0);
-            transform: rotate(35deg);
-            right: 2px;
-            top: 50%;
-            transform-origin: center;
-            margin-top: -14px;
-            opacity: 0.9;
-        }
-    </style>
+  /* Floating WhatsApp */
+  .float-wa{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 10px 26px rgba(0,0,0,.45);z-index:60;animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+</style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- Grain Overlay -->
-    <div class="grain"></div>
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-40 nav-blur bg-unik-dark/80 border-b border-unik-gold/10 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="#" class="logo-text text-2xl text-unik-cream font-medium tracking-tight">
-                    Uni<span class="logo-k">k</span>reate
-                </a>
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="#services" class="text-sm text-unik-gray hover:text-unik-gold transition-colors link-underline">Services</a>
-                    <a href="#about" class="text-sm text-unik-gray hover:text-unik-gold transition-colors link-underline">About</a>
-                    <a href="#team" class="text-sm text-unik-gray hover:text-unik-gold transition-colors link-underline">Team</a>
-                    <a href="#portfolio" class="text-sm text-unik-gray hover:text-unik-gold transition-colors link-underline">Work</a>
-                    <a href="#contact" class="btn-gold px-6 py-2.5 bg-unik-gold text-unik-dark text-sm font-medium rounded-full">Let's Talk</a>
-                </div>
-                <button class="md:hidden text-unik-cream" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-unik-charcoal border-t border-unik-gold/10">
-            <div class="px-6 py-6 space-y-4">
-                <a href="#services" class="block text-unik-gray hover:text-unik-gold">Services</a>
-                <a href="#about" class="block text-unik-gray hover:text-unik-gold">About</a>
-                <a href="#team" class="block text-unik-gray hover:text-unik-gold">Team</a>
-                <a href="#portfolio" class="block text-unik-gray hover:text-unik-gold">Work</a>
-                <a href="#contact" class="block text-unik-gold">Let's Talk</a>
-            </div>
-        </div>
+<!-- ===== HEADER ===== -->
+<!-- Files: logo-dark.png, logo.png, dp.png — teeno isi naam se GitHub repo me upload karna -->
+<header>
+  <div class="wrap nav">
+    <img src="logo-dark.png" alt="UniKreate — Marketing Agency" onerror="this.style.display='none';document.getElementById('brandText').style.display='block'">
+    <span id="brandText" style="display:none;font-family:Poppins;font-weight:800;font-size:24px">Uni<span class="grad-text">Kreate</span></span>
+    <nav class="links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#about">About</a>
     </nav>
+    <!-- WhatsApp number: badalna ho to 919149379162 ki jagah apna number likh do (poori file me) -->
+    <a class="btn btn-wa" href="https://wa.me/919149379162?text=Hi%20UniKreate!%20Mujhe%20apne%20brand%20ke%20liye%20video%20editing%20chahiye." target="_blank">WhatsApp Karo</a>
+  </div>
+</header>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <!-- Background Elements -->
-        <div class="absolute inset-0 bg-gradient-to-b from-unik-charcoal/50 to-unik-dark"></div>
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-unik-gold/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-unik-gold/5 rounded-full blur-3xl"></div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <div class="fade-in">
-                <p class="text-unik-gold text-sm tracking-[0.3em] uppercase mb-6 font-medium">Premium Creative Agency</p>
-            </div>
-            <h1 class="serif text-5xl md:text-7xl lg:text-8xl text-unik-cream leading-[1.1] mb-8 fade-up">
-                We Craft <br>
-                <span class="text-gold-gradient italic">Digital Excellence</span>
-            </h1>
-            <p class="max-w-2xl mx-auto text-unik-gray text-lg md:text-xl leading-relaxed mb-12 fade-up" style="transition-delay: 0.1s">
-                Where strategic storytelling meets cinematic visuals. We transform brands into unforgettable experiences through content that captivates and converts.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-up" style="transition-delay: 0.2s">
-                <a href="#portfolio" class="btn-gold px-8 py-4 bg-unik-gold text-unik-dark font-medium rounded-full text-sm tracking-wide">
-                    View Our Work
-                </a>
-                <a href="#contact" class="px-8 py-4 border border-unik-gold/30 text-unik-gold hover:bg-unik-gold/10 rounded-full text-sm tracking-wide transition-all duration-300">
-                    Start a Project
-                </a>
-            </div>
-        </div>
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div class="badge">🎬 Video Editing • Social Media • Ads</div>
+    <h1>We Make Brands<br><span class="grad-text">Go Viral.</span></h1>
+    <p>UniKreate aapke brand ke liye scroll rokne wali reels, consistent social media aur result wale ads banata hai. Pehla reel bilkul <b style="color:#fff">FREE</b> — pasand aaye tabhi kaam aage badhega.</p>
+    <div class="cta">
+      <a class="btn btn-grad" href="https://wa.me/919149379162?text=Hi%20UniKreate!%20Mujhe%20FREE%20trial%20reel%20chahiye." target="_blank">FREE Trial Reel Lo</a>
+      <a class="btn btn-ghost" href="#pricing">Packages Dekho</a>
+    </div>
+    <div class="trust">Abhi hum <b>Radiance High School, Adilabad</b> ke saath bhi kaam kar rahe hain</div>
+    <div class="stats">
+      <div class="stat"><div class="num grad-text">1.5</div><div class="lbl">Years Experience</div></div>
+      <div class="stat"><div class="num grad-text">24–48h</div><div class="lbl">Fast Delivery</div></div>
+      <div class="stat"><div class="num grad-text">1st FREE</div><div class="lbl">Pehla Reel Trial</div></div>
+      <div class="stat"><div class="num grad-text">2 FREE</div><div class="lbl">Revisions Har Video Me</div></div>
+    </div>
+  </div>
+</section>
 
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <svg class="w-6 h-6 text-unik-gold/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-        </div>
-    </section>
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Our <span class="grad-text">Services</span></h2>
+      <p>Jo bhi ek brand ko online badhne ke liye chahiye — ek hi jagah.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card reveal">
+        <div class="icon">🎬</div>
+        <h3>Video Editing</h3>
+        <p>Reels, Shorts aur YouTube videos — smooth cuts, subtitles, trending music, hook text aur colour grading ke saath.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon p">📱</div>
+        <h3>Social Media</h3>
+        <p>Instagram page handling, content planning aur consistent posting — taaki aapka page roz active aur professional dikhe.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon o">🎯</div>
+        <h3>Ads & Lead Generation</h3>
+        <p>Meta Ads jo sirf views nahi, asli enquiries aur customers laayein — local business ho ya creator.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-24 md:py-32 relative">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-16 items-start mb-20">
-                <div class="fade-up">
-                    <p class="text-unik-gold text-sm tracking-[0.2em] uppercase mb-4">What We Do</p>
-                    <h2 class="serif text-4xl md:text-5xl text-unik-cream leading-tight">
-                        Services Built for <span class="italic text-unik-gold">Impact</span>
-                    </h2>
-                </div>
-                <div class="fade-up" style="transition-delay: 0.1s">
-                    <p class="text-unik-gray leading-relaxed text-lg">
-                        From scroll-stopping social content to cinematic brand films, we offer end-to-end creative solutions tailored for modern brands seeking distinction.
-                    </p>
-                </div>
-            </div>
+<!-- ===== HOW IT WORKS ===== -->
+<section style="padding-top:6px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Kaam <span class="grad-text">Kaise Hota Hai?</span></h2>
+      <p>Sirf 3 simple steps — koi jhanjhat nahi.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card reveal"><div class="step-num">1</div><h3>Raw Video Bhejo</h3><p>Apna raw video WhatsApp ya Google Drive se bhej do. Pehla trial reel FREE hai.</p></div>
+      <div class="card reveal"><div class="step-num">2</div><h3>Hum Edit Karte Hain</h3><p>Cutting, subtitles, music aur effects ke saath professional edit — 24–48 hours me ready.</p></div>
+      <div class="card reveal"><div class="step-num">3</div><h3>Delivery + Revision</h3><p>Video milte hi check karo — 2 revisions FREE. Pasand aaye to regular kaam shuru.</p></div>
+    </div>
+  </div>
+</section>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="group p-8 rounded-2xl bg-unik-charcoal/30 border border-unik-gold/10 hover:border-unik-gold/30 transition-all duration-500 fade-up">
-                    <div class="w-12 h-12 rounded-full bg-unik-gold/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-5 h-5 text-unik-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                    </div>
-                    <h3 class="serif text-2xl text-unik-cream mb-3">Content Strategy</h3>
-                    <p class="text-unik-gray leading-relaxed text-sm">Script writing, trend research, and content management that keeps your brand ahead of the curve and deeply connected with your audience.</p>
-                </div>
+<!-- ===== WORK ===== -->
+<!-- Apne asli kaam ke thumbnails/links lagane ke liye in tiles ko badal do -->
+<section id="work" style="padding-top:6px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Our <span class="grad-text">Work</span></h2>
+      <p>Schools, restaurants, creators aur local brands ke liye banaya gaya kaam.<br><b style="color:#fff">Kisi bhi tile par click karo — seedha WhatsApp par baat hogi 👇</b></p>
+    </div>
+    <div class="grid g3">
+      <a href="https://wa.me/919149379162?text=Hi%20UniKreate!%20Mujhe%20apne%20brand%20ke%20liye%20reels%20banwani%20hain." target="_blank"><div class="work-tile w1 reveal"><div class="play">▶</div>Brand Reels<span>Schools • Restaurants • Businesses</span></div></a>
+      <a href="https://wa.me/919149379162?text=Hi%20UniKreate!%20Mujhe%20promo%20video%20banwana%20hai." target="_blank"><div class="work-tile w2 reveal"><div class="play">▶</div>Promo Videos<span>Offers • Events • Launches</span></div></a>
+      <a href="https://wa.me/919149379162?text=Hi%20UniKreate!%20Wedding%2Fevent%20shoot%20ke%20baare%20me%20baat%20karni%20hai." target="_blank"><div class="work-tile w3 reveal"><div class="play">▶</div>Wedding & Events<span>Highlights • Teasers • Delivery Films</span></div></a>
+    </div>
+  </div>
+</section>
 
-                <!-- Service 2 -->
-                <div class="group p-8 rounded-2xl bg-unik-charcoal/30 border border-unik-gold/10 hover:border-unik-gold/30 transition-all duration-500 fade-up" style="transition-delay: 0.1s">
-                    <div class="w-12 h-12 rounded-full bg-unik-gold/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-5 h-5 text-unik-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                    </div>
-                    <h3 class="serif text-2xl text-unik-cream mb-3">Cinematography</h3>
-                    <p class="text-unik-gray leading-relaxed text-sm">Professional videography and cinematography that tells your brand story with stunning visual language and emotional depth.</p>
-                </div>
+<!-- ===== PRICING ===== -->
+<!-- PRICES: badalna ho to bas neeche ke numbers change kar do -->
+<section id="pricing" style="padding-top:6px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Simple <span class="grad-text">Pricing</span></h2>
+      <p>Koi hidden charge nahi. Pehla trial reel har plan se pehle FREE.</p>
+    </div>
+    <div class="grid g3 price">
+      <div class="card reveal">
+        <h3>Single Video</h3>
+        <div class="amount">₹1,800</div>
+        <div class="per">per video editing</div>
+        <ul>
+          <li>1 Reel / Short / Video</li>
+          <li>Subtitles + Music + Effects</li>
+          <li>2 Revisions FREE</li>
+          <li>24–48 hrs Delivery</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://wa.me/919149379162?text=Hi%20UniKreate!%20Single%20video%20editing%20ke%20baare%20me%20baat%20karni%20hai." target="_blank">Start Karo</a>
+      </div>
+      <div class="card popular reveal">
+        <div class="tag">MOST POPULAR</div>
+        <h3>Monthly Package</h3>
+        <div class="amount">₹18,000</div>
+        <div class="per">per month — local brands ke liye</div>
+        <span class="save">12 Reels — matlab sirf ₹1,500 per reel!</span>
+        <ul>
+          <li>12 Reels (Shoot + Edit)</li>
+          <li>Instagram Page Handling</li>
+          <li>Content Planning</li>
+          <li>Priority Delivery</li>
+          <li>Pehla Trial Reel FREE</li>
+        </ul>
+        <a class="btn btn-grad" href="https://wa.me/919149379162?text=Hi%20UniKreate!%20Monthly%20package%20(18k)%20ke%20baare%20me%20baat%20karni%20hai." target="_blank">Start Karo</a>
+      </div>
+      <div class="card reveal">
+        <h3>Custom</h3>
+        <div class="amount">Let's Talk</div>
+        <div class="per">ads, bulk videos ya kuch alag?</div>
+        <ul>
+          <li>Bulk Video Packages</li>
+          <li>Meta Ads Campaigns</li>
+          <li>Event / Wedding Shoots</li>
+          <li>Custom Requirements</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://wa.me/919149379162?text=Hi%20UniKreate!%20Custom%20kaam%20ke%20baare%20me%20baat%20karni%20hai." target="_blank">Baat Karo</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <!-- Service 3 -->
-                <div class="group p-8 rounded-2xl bg-unik-charcoal/30 border border-unik-gold/10 hover:border-unik-gold/30 transition-all duration-500 fade-up" style="transition-delay: 0.2s">
-                    <div class="w-12 h-12 rounded-full bg-unik-gold/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-5 h-5 text-unik-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-                    </div>
-                    <h3 class="serif text-2xl text-unik-cream mb-3">Paid Media</h3>
-                    <p class="text-unik-gray leading-relaxed text-sm">Meta Ads management and social media page handling that drives measurable growth, engagement, and conversion for your business.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ===== FAQ ===== -->
+<section id="faq" style="padding-top:6px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Aksar Puche Jane Wale <span class="grad-text">Sawaal</span></h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Pehla reel sach me FREE hai?</summary>
+        <p>Ha, bilkul. Ek raw video bhejo, hum edit karke bhejenge. Pasand aaye tabhi paid kaam shuru hoga — koi zabardasti nahi.</p>
+      </details>
+      <details>
+        <summary>Video kitne time me milega?</summary>
+        <p>Normal delivery 24–48 hours ki hai. Monthly package walo ko priority delivery milti hai.</p>
+      </details>
+      <details>
+        <summary>Raw video kaise bhejun?</summary>
+        <p>WhatsApp ya Google Drive — jo aasan lage. Bade files ke liye Drive best rahega.</p>
+      </details>
+      <details>
+        <summary>Payment kaise hoga?</summary>
+        <p>UPI se. Monthly package me kaam advance ke baad shuru hota hai, aur videos batch-wise deliver hote hain.</p>
+      </details>
+    </div>
+  </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 md:py-32 bg-unik-charcoal/20 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-unik-gold/5 to-transparent"></div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="fade-up">
-                    <p class="text-unik-gold text-sm tracking-[0.2em] uppercase mb-4">About Us</p>
-                    <h2 class="serif text-4xl md:text-5xl text-unik-cream leading-tight mb-6">
-                        Two Creatives, <br>
-                        <span class="italic text-unik-gold">One Vision</span>
-                    </h2>
-                    <p class="text-unik-gray leading-relaxed mb-6 text-lg">
-                        Unikreate was born from a shared obsession with quality. We believe every brand has a unique story worth telling — and we're here to tell it with precision, creativity, and undeniable style.
-                    </p>
-                    <p class="text-unik-gray leading-relaxed mb-8">
-                        Combining strategic digital expertise with world-class visual production, we offer a rare blend of services that elevate brands from ordinary to iconic.
-                    </p>
-                    <div class="flex gap-8">
-                        <div>
-                            <p class="serif text-3xl text-unik-gold">50+</p>
-                            <p class="text-unik-gray text-sm mt-1">Projects Delivered</p>
-                        </div>
-                        <div>
-                            <p class="serif text-3xl text-unik-gold">2+</p>
-                            <p class="text-unik-gray text-sm mt-1">Years Experience</p>
-                        </div>
-                        <div>
-                            <p class="serif text-3xl text-unik-gold">100%</p>
-                            <p class="text-unik-gray text-sm mt-1">Client Dedication</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative fade-up" style="transition-delay: 0.2s">
-                    <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-unik-charcoal relative">
-                        <div class="absolute inset-0 bg-gradient-to-br from-unik-gold/20 to-unik-dark/80"></div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-center p-8">
-                                <div class="logo-text text-6xl text-unik-cream/20 mb-4">U</div>
-                                <p class="text-unik-gold/60 serif italic text-xl">"Crafting the extraordinary"</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute -bottom-6 -left-6 w-48 h-48 border border-unik-gold/20 rounded-2xl -z-10"></div>
-                    <div class="absolute -top-6 -right-6 w-48 h-48 border border-unik-gold/20 rounded-2xl -z-10"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="wrap">
+    <img class="dp" src="dp.png" alt="UniKreate icon" onerror="this.style.display='none'">
+    <div class="txt">
+      <h2>About <span class="grad-text">UniKreate</span></h2>
+      <p>UniKreate ek Adilabad based marketing agency hai jo schools, restaurants, creators aur local brands ko online badhne me madad karti hai. Abhi hum Radiance High School, Adilabad ke saath bhi kaam kar rahe hain. Hamara simple sa rule hai — pehla kaam FREE me karke dikhao, phir bharosa bano.</p>
+    </div>
+  </div>
+</section>
 
-    <!-- Team Section -->
-    <section id="team" class="py-24 md:py-32 relative">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-20 fade-up">
-                <p class="text-unik-gold text-sm tracking-[0.2em] uppercase mb-4">The Minds Behind</p>
-                <h2 class="serif text-4xl md:text-5xl text-unik-cream leading-tight mb-6">
-                    Meet The <span class="italic text-unik-gold">Founders</span>
-                </h2>
-                <p class="text-unik-gray leading-relaxed text-lg">
-                    A dynamic duo combining strategic digital mastery with cinematic storytelling. Together, we deliver campaigns that don't just look beautiful — they perform.
-                </p>
-            </div>
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Chalo, <span class="grad-text">Kuch Bada Banate Hain</span></h2>
+    <p>Apna ek raw video bhejo — pehla edited reel FREE me bana ke bhejenge. Pasand aaye tabhi aage baat hogi.</p>
+    <div class="cta">
+      <a class="btn btn-wa" href="https://wa.me/919149379162?text=Hi%20UniKreate!%20Mujhe%20FREE%20trial%20reel%20chahiye." target="_blank">WhatsApp — +91 91493 79162</a>
+      <!-- Instagram: agency ka handle ban jaye to ye link badal dena -->
+      <a class="btn btn-ghost" href="https://instagram.com/avgamitkumar" target="_blank">Instagram — @avgamitkumar</a>
+    </div>
+  </div>
+</section>
 
-            <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-                <!-- Founder Card -->
-                <div class="team-card rounded-3xl bg-gradient-to-b from-unik-charcoal/80 to-unik-dark/80 p-8 md:p-10 relative overflow-hidden group fade-up">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-unik-gold/5 rounded-full blur-3xl group-hover:bg-unik-gold/10 transition-all duration-500"></div>
-                    
-                    <div class="relative z-10">
-                        <div class="flex items-start justify-between mb-8">
-                            <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-unik-gold/20 to-unik-gold/5 flex items-center justify-center border border-unik-gold/20">
-                                <span class="serif text-3xl text-unik-gold">F</span>
-                            </div>
-                            <div class="flex gap-3">
-                                <a href="#" class="w-10 h-10 rounded-full bg-unik-gold/10 flex items-center justify-center hover:bg-unik-gold hover:text-unik-dark transition-all duration-300 text-unik-gold">
-                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                                </a>
-                                <a href="#" class="w-10 h-10 rounded-full bg-unik-gold/10 flex items-center justify-center hover:bg-unik-gold hover:text-unik-dark transition-all duration-300 text-unik-gold">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
-                                </a>
-                            </div>
-                        </div>
+<footer>
+  <div class="wrap">
+    <img src="logo-dark.png" alt="UniKreate">
+    <div style="margin-bottom:8px"><a href="https://wa.me/919149379162" target="_blank" style="color:#25d366;font-weight:600">WhatsApp: +91 91493 79162</a> &nbsp;•&nbsp; <a href="https://instagram.com/avgamitkumar" target="_blank" style="color:#ff5c9e;font-weight:600">Instagram: @avgamitkumar</a></div>
+    <div>© 2026 UniKreate — Marketing Agency • Video Editing • Social Media • Ads</div>
+  </div>
+</footer>
 
-                        <div class="mb-6">
-                            <p class="text-unik-gold text-xs tracking-[0.2em] uppercase mb-2">Founder</p>
-                            <h3 class="serif text-3xl text-unik-cream mb-2">Your Name</h3>
-                            <p class="text-unik-gray text-sm leading-relaxed">
-                                Visionary strategist with a passion for storytelling and digital growth. Specializes in transforming brand narratives into high-performing content ecosystems.
-                            </p>
-                        </div>
+<!-- Floating WhatsApp Button -->
+<a class="float-wa" href="https://wa.me/919149379162?text=Hi%20UniKreate!" target="_blank" title="WhatsApp par baat karo">💬</a>
 
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            <span class="skill-tag px-3 py-1 rounded-full text-xs text-unik-gold-light">Script Writing</span>
-                            <span class="skill-tag px-3 py-1 rounded-full text-xs text-unik-gold-light">Meta Ads</span>
-                            <span class="skill-tag px-3 py-1 rounded-full text-xs text-unik-gold-light">Social Media</span>
-                            <span class="skill-tag px-3 py-1 rounded-full text-xs text-unik-gold-light">Content Management</span>
-                            <span class="skill-tag px-3 py-1 rounded-full text-xs text-unik-gold-light">Trend Research</span>
-                            <span class="skill-tag px-3 py-1 rounded-full text-xs text-unik-gold-light">HTML</span>
-                        </div>
+<script>
+  // Scroll par sections ka smooth reveal effect
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 
-                        <a href="#" class="inline-flex items-center gap-2 text-unik-gold hover:text-unik-gold-light transition-colors text-sm font-medium group/link">
-                            View Portfolio 
-                            <svg class="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Co-Founder Card -->
-                <div class="team-card rounded-3xl bg-gradient-to-b from-unik-charcoal/80 to-unik-dark/80 p-8 md:p-10 relative overflow-hidden group fade-up" style="transition-delay: 0.15s">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-unik-gold/5 rounded-full blur-3xl group-hover:bg-unik-gold/10 transition-all duration-500"></div>
-                    
-                    <div class="relative z-10">
-                        <div class="flex items-start justify-between mb-8">
-                            <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-unik-gold/20 to-unik-gold/5 flex items-center justify-center border border-unik-gold/20">
-                                <span class="serif text-3xl text-unik-gold">C</span>
-                            </div>
-                            <div class="flex gap-3">
-                                <a href="#" class="w-10 h-10 rounded-full bg-unik-gold/10 flex items-center justify-center hover:bg-unik-gold hover:text-unik-dark transition-all duration-300 text-unik-gold">
-                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                                </a>
-                                <a href="#" class="w-10 h-10 rounded-full bg-unik-gold/10 flex items-center justify-center hover:bg-unik-gold hover:text-unik-dark transition-all duration-300 text-unik-gold">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="mb-6">
-                            <p class="text-unik-gold text-xs tracking-[0.2em] uppercase mb-2">Co-Founder</p>
-                            <h3 class="serif text-3xl text-unik-cream mb-2">Partner Name</h3>
-                            <p class="text-unik-gray text-sm leading-relaxed">
-                                Seasoned videographer and visual artist with 2+ years of professional experience. Brings technical mastery and creative vision to every frame.
-                            </p>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            <span class="skill-tag px-3 py-1 rounded-full text-xs text-unik-gold-light">Videography</span>
-                            <span class="skill-tag px-3 py-1 rounded-full text-xs text-unik-gold-light">Cinematography</span>
-                            <span class="skill-tag px-3 py-1 rounded-full text-xs text-unik-gold-light">Video Editing</span>
-                            <span class="skill-tag px-3 py-1 rounded-full text-xs text-unik-gold-light">Color Grading</span>
-                            <span class="skill-tag px-3 py-1 rounded-full text-xs text-unik-gold-light">Post Production</span>
-                            <span class="skill-tag px-3 py-1 rounded-full text-xs text-unik-gold-light">2+ Years Exp</span>
-                        </div>
-
-                        <a href="#" class="inline-flex items-center gap-2 text-unik-gold hover:text-unik-gold-light transition-colors text-sm font-medium group/link">
-                            View Portfolio 
-                            <svg class="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-24 md:py-32 bg-unik-charcoal/20">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 fade-up">
-                <div>
-                    <p class="text-unik-gold text-sm tracking-[0.2em] uppercase mb-4">Selected Work</p>
-                    <h2 class="serif text-4xl md:text-5xl text-unik-cream leading-tight">
-                        Recent <span class="italic text-unik-gold">Projects</span>
-                    </h2>
-                </div>
-                <a href="#" class="mt-6 md:mt-0 text-unik-gold hover:text-unik-gold-light transition-colors text-sm font-medium inline-flex items-center gap-2">
-                    View All Projects <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </a>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="portfolio-item aspect-[4/5] rounded-2xl bg-unik-charcoal relative group cursor-pointer fade-up">
-                    <div class="absolute inset-0 bg-gradient-to-br from-unik-gold/10 to-unik-dark"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6 portfolio-content z-10">
-                        <p class="text-unik-gold text-xs tracking-wider uppercase mb-2">Brand Film</p>
-                        <h3 class="serif text-xl text-unik-cream">Luxury Fashion Campaign</h3>
-                    </div>
-                </div>
-                <div class="portfolio-item aspect-[4/5] rounded-2xl bg-unik-charcoal relative group cursor-pointer fade-up" style="transition-delay: 0.1s">
-                    <div class="absolute inset-0 bg-gradient-to-br from-unik-gold/10 to-unik-dark"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6 portfolio-content z-10">
-                        <p class="text-unik-gold text-xs tracking-wider uppercase mb-2">Social Campaign</p>
-                        <h3 class="serif text-xl text-unik-cream">Meta Ads Strategy</h3>
-                    </div>
-                </div>
-                <div class="portfolio-item aspect-[4/5] rounded-2xl bg-unik-charcoal relative group cursor-pointer fade-up" style="transition-delay: 0.2s">
-                    <div class="absolute inset-0 bg-gradient-to-br from-unik-gold/10 to-unik-dark"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6 portfolio-content z-10">
-                        <p class="text-unik-gold text-xs tracking-wider uppercase mb-2">Cinematic</p>
-                        <h3 class="serif text-xl text-unik-cream">Product Launch Video</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 md:py-32 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-unik-charcoal/30"></div>
-        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10 fade-up">
-            <p class="text-unik-gold text-sm tracking-[0.2em] uppercase mb-4">Start a Project</p>
-            <h2 class="serif text-4xl md:text-6xl text-unik-cream leading-tight mb-6">
-                Let's Create Something <br>
-                <span class="italic text-unik-gold">Extraordinary</span>
-            </h2>
-            <p class="text-unik-gray text-lg mb-10 max-w-xl mx-auto">
-                Ready to elevate your brand? We're currently accepting new projects for Q2 2026.
-            </p>
-            <a href="mailto:hello@unikreate.com" class="btn-gold inline-flex items-center gap-3 px-10 py-5 bg-unik-gold text-unik-dark font-medium rounded-full text-base tracking-wide">
-                Get In Touch
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="border-t border-unik-gold/10 py-12 bg-unik-dark">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="logo-text text-2xl text-unik-cream font-medium tracking-tight">
-                    Uni<span class="logo-k">k</span>reate
-                </div>
-                <div class="flex gap-8 text-sm text-unik-gray">
-                    <a href="#services" class="hover:text-unik-gold transition-colors">Services</a>
-                    <a href="#about" class="hover:text-unik-gold transition-colors">About</a>
-                    <a href="#team" class="hover:text-unik-gold transition-colors">Team</a>
-                    <a href="#portfolio" class="hover:text-unik-gold transition-colors">Work</a>
-                </div>
-                <p class="text-unik-gray/60 text-sm">© 2026 Unikreate. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-up, .fade-in').forEach(el => observer.observe(el));
-
-        // Navbar scroll effect
-        let lastScroll = 0;
-        const navbar = document.getElementById('navbar');
-        
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                navbar.classList.add('shadow-lg', 'shadow-unik-gold/5');
-            } else {
-                navbar.classList.remove('shadow-lg', 'shadow-unik-gold/5');
-            }
-            
-            lastScroll = currentScroll;
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    document.getElementById('mobile-menu').classList.add('hidden');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
