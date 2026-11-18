@@ -345,3 +345,6 @@ mark{background:none;color:transparent;background-image:linear-gradient(100deg,v
 .price-card .btn{margin-top:20px}
 .price-card--hot{border-color:rgba(47,214,194,.45)}
 .price-note{margin:22px 0 0;color:var(--mute);font-size:14px;text-align:center}
+
+.price-group{margin:34px 0 0;font-size:12px;letter-spacing:.16em;font-weight:800;text-transform:uppercase;color:var(--teal)}
+.price-group + .price-grid{margin-top:16px}
