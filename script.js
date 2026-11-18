@@ -53,7 +53,7 @@
 
   /* ---- magnetic primary buttons (mouse only) ---- */
   if (fine && !reduce){
-    $$('.btn--primary').forEach(function(b){
+    $$('.btn--primary, .btn--glass').forEach(function(b){
       b.addEventListener('pointermove', function(e){
         var r = b.getBoundingClientRect();
         var dx = (e.clientX - (r.left + r.width / 2)) / r.width;
@@ -65,6 +65,21 @@
         b.style.setProperty('--mx', '0px'); b.style.setProperty('--my', '0px');
       });
     });
+  }
+
+  /* ---- cursor glow: soft light follows the mouse (desktop only), lerped for a liquid feel ---- */
+  var glow = document.querySelector('.cursor-glow');
+  if (fine && !reduce && glow){
+    var gx = window.innerWidth / 2, gy = window.innerHeight / 3, tx = gx, ty = gy, glowOn = false;
+    document.addEventListener('pointermove', function(e){
+      tx = e.clientX; ty = e.clientY;
+      if (!glowOn){ glow.classList.add('on'); glowOn = true; }
+    }, { passive: true });
+    (function loop(){
+      gx += (tx - gx) * 0.12; gy += (ty - gy) * 0.12;
+      glow.style.transform = 'translate3d(' + gx + 'px,' + gy + 'px,0)';
+      requestAnimationFrame(loop);
+    })();
   }
 
   /* ---- reveals (stagger by sibling index; drop the delay once in, so tilt stays snappy) ---- */
@@ -162,11 +177,17 @@
     c.addEventListener('click', function(){
       chips.forEach(function(x){ x.setAttribute('aria-pressed', String(x === c)); });
       var f = c.getAttribute('data-f');
+      var shown = 0;
       reels.forEach(function(card){
         var show = f === 'top' ? card.hasAttribute('data-top') : card.getAttribute('data-cat') === f;
         var was = !card.classList.contains('is-off');
         card.classList.toggle('is-off', !show);
-        if (show && !was){ card.classList.remove('pop'); void card.offsetWidth; card.classList.add('pop'); }
+        if (show && !was){
+          card.classList.remove('pop'); void card.offsetWidth;
+          card.style.animationDelay = (shown * 45) + 'ms';
+          card.classList.add('pop');
+          shown++;
+        }
       });
       moveChip();
     });

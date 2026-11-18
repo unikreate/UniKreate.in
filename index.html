@@ -117,9 +117,89 @@
   /* Floating WhatsApp */
   .float-wa{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 10px 26px rgba(0,0,0,.45);z-index:60;animation:pulse 2.2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+
+  /* ============ LIQUID REDESIGN ============ */
+  /* Liquid mesh background: slow drifting colour blobs, fixed behind everything */
+  .mesh{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+  .mblob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;will-change:transform}
+  .m1{width:44vw;height:44vw;left:-12vw;top:-10vh;background:radial-gradient(circle,#0e7c86 0%,transparent 65%);animation:meshA 26s ease-in-out infinite}
+  .m2{width:38vw;height:38vw;right:-10vw;top:22vh;background:radial-gradient(circle,#7a1e4d 0%,transparent 65%);animation:meshB 32s ease-in-out infinite}
+  .m3{width:40vw;height:40vw;left:22vw;top:64vh;background:radial-gradient(circle,#7a3c10 0%,transparent 65%);animation:meshA 38s ease-in-out infinite reverse}
+  .m4{width:30vw;height:30vw;right:18vw;bottom:-12vh;background:radial-gradient(circle,#123a6e 0%,transparent 65%);animation:meshB 28s ease-in-out infinite reverse}
+  @keyframes meshA{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(6vw,4vh,0) scale(1.12)}}
+  @keyframes meshB{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-5vw,5vh,0) scale(1.08)}}
+  /* Cursor glow: a soft light that follows the mouse (desktop only) */
+  .cursor-glow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;z-index:1;
+    background:radial-gradient(circle,rgba(25,194,220,.16) 0%,rgba(255,46,136,.08) 42%,transparent 68%);
+    opacity:0;transition:opacity .5s;will-change:transform}
+  .cursor-glow.on{opacity:1}
+  @media (hover:none),(pointer:coarse){.cursor-glow{display:none}}
+  /* Header: turns to frosted glass once you scroll */
+  header{transition:box-shadow .35s,background .35s}
+  header.scrolled{box-shadow:0 12px 40px -18px rgba(0,0,0,.8);background:rgba(11,18,32,.78)}
+  /* Liquid buttons: shine sweep + magnetic pull (JS) */
+  .btn{position:relative;overflow:hidden;will-change:transform}
+  .btn-grad::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s ease;pointer-events:none}
+  .btn-grad:hover::after{transform:translateX(120%)}
+  .btn .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);transform:scale(0);pointer-events:none;animation:rip .6s ease-out forwards}
+  @keyframes rip{to{transform:scale(1);opacity:0}}
+  /* Cards: frosted glass + spotlight that follows the cursor + lift */
+  .card{position:relative;overflow:hidden;background:linear-gradient(150deg,rgba(255,255,255,.09),rgba(255,255,255,.03) 55%,rgba(255,255,255,.06));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+  .card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;
+    background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(25,194,220,.16),rgba(255,46,136,.08) 45%,transparent 65%)}
+  .card:hover::before{opacity:1}
+  .card:hover{transform:translateY(-7px);border-color:rgba(25,194,220,.45);box-shadow:0 24px 48px -20px rgba(0,0,0,.7),0 0 0 1px rgba(25,194,220,.12)}
+  .icon{transition:transform .35s}
+  .card:hover .icon{transform:scale(1.12) rotate(-6deg)}
+  /* Work tiles: shine sweep + glow lift */
+  .work-tile{position:relative;overflow:hidden}
+  .work-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);transform:translateX(-130%);transition:transform .8s ease;pointer-events:none}
+  .work-tile:hover::after{transform:translateX(130%)}
+  .work-tile:hover{transform:translateY(-7px) scale(1.015);box-shadow:0 28px 56px -22px rgba(0,0,0,.75),0 0 40px -10px rgba(255,46,136,.35)}
+  .work-tile .play{transition:transform .35s}
+  .work-tile:hover .play{transform:scale(1.18)}
+  /* Stats: counting numbers */
+  .stat{position:relative;overflow:hidden;background:linear-gradient(150deg,rgba(255,255,255,.08),rgba(255,255,255,.03));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:transform .3s,border-color .3s}
+  .stat:hover{transform:translateY(-4px);border-color:rgba(25,194,220,.4)}
+  .stat .num{font-variant-numeric:tabular-nums}
+  /* Marquee: endless scrolling keywords strip */
+  .marquee{overflow:hidden;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.02);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .marquee__track{display:flex;gap:0;width:max-content;animation:marq 26s linear infinite}
+  .marquee:hover .marquee__track{animation-play-state:paused}
+  .marquee__track span{font-family:'Poppins';font-weight:700;font-size:17px;letter-spacing:.06em;white-space:nowrap;padding:0 18px;color:var(--muted)}
+  .marquee__track span b{color:#19c2dc;font-weight:700}
+  @keyframes marq{to{transform:translateX(-50%)}}
+  /* FAQ: smooth open */
+  details{transition:border-color .3s,background .3s}
+  details:hover{border-color:#2f4472}
+  details[open]{border-color:rgba(25,194,220,.4)}
+  details[open ] summary{color:#fff}
+  details summary{list-style:none;transition:color .25s}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"＋";float:right;color:var(--teal);font-weight:700;transition:transform .35s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{animation:faqIn .45s ease}
+  @keyframes faqIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  /* Hero: gentle float on the badge + glow under the headline */
+  .badge{animation:badgeFloat 5s ease-in-out infinite}
+  @keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  .hero h1{text-shadow:0 0 60px rgba(25,194,220,.25)}
+  .hero .blob{animation:heroBlob 12s ease-in-out infinite alternate}
+  .hero .b2{animation-delay:-6s}
+  @keyframes heroBlob{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(24px,-18px,0) scale(1.15)}}
+  /* Staggered reveals */
+  .reveal{transition-delay:var(--d,0ms)}
+  /* Reduced motion: everything calm */
+  @media (prefers-reduced-motion:reduce){
+    .mesh,.cursor-glow,.marquee__track,.badge,.hero .blob{animation:none!important}
+    .btn-grad::after,.work-tile::after{transition:none}
+    .card::before{display:none}
+  }
 </style>
 </head>
 <body>
+<div class="mesh" aria-hidden="true"><span class="mblob m1"></span><span class="mblob m2"></span><span class="mblob m3"></span><span class="mblob m4"></span></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
 <!-- ===== HEADER ===== -->
 <!-- Logo: code isi file ko dhundhta hai jo repo (UniKreate.in) me pehle se hai: 878a2b64-6e7f-44da-82f5-53b882c95af1.png — bas index.html + ye ek photo, aur kuch nahi chahiye -->
@@ -153,13 +233,21 @@
     </div>
     <div class="trust">Abhi hum <b>Radiance High School, Adilabad</b> ke saath bhi kaam kar rahe hain</div>
     <div class="stats">
-      <div class="stat"><div class="num grad-text">1.5</div><div class="lbl">Years Experience</div></div>
-      <div class="stat"><div class="num grad-text">24–48h</div><div class="lbl">Fast Delivery</div></div>
-      <div class="stat"><div class="num grad-text">100%</div><div class="lbl">Original Kaam, No Copy</div></div>
-      <div class="stat"><div class="num grad-text">2</div><div class="lbl">Revisions Har Video Me</div></div>
+      <div class="stat"><div class="num grad-text" data-count="1.5" data-decimals="1">1.5</div><div class="lbl">Years Experience</div></div>
+      <div class="stat"><div class="num grad-text" data-count="24" data-suffix="–48h">24–48h</div><div class="lbl">Fast Delivery</div></div>
+      <div class="stat"><div class="num grad-text" data-count="100" data-suffix="%">100%</div><div class="lbl">Original Kaam, No Copy</div></div>
+      <div class="stat"><div class="num grad-text" data-count="2">2</div><div class="lbl">Revisions Har Video Me</div></div>
     </div>
   </div>
 </section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Video Editing <b>✦</b></span><span>Reels <b>✦</b></span><span>Social Media <b>✦</b></span><span>Meta Ads <b>✦</b></span><span>Lead Generation <b>✦</b></span><span>Talking-Head Videos <b>✦</b></span><span>School Promos <b>✦</b></span><span>Wedding Films <b>✦</b></span>
+    <span>Video Editing <b>✦</b></span><span>Reels <b>✦</b></span><span>Social Media <b>✦</b></span><span>Meta Ads <b>✦</b></span><span>Lead Generation <b>✦</b></span><span>Talking-Head Videos <b>✦</b></span><span>School Promos <b>✦</b></span><span>Wedding Films <b>✦</b></span>
+  </div>
+</div>
 
 <!-- ===== SERVICES ===== -->
 <section id="services">
@@ -286,9 +374,101 @@
 <a class="float-wa" href="https://wa.me/919149379162?text=Hi%20UniKreate!" target="_blank" title="WhatsApp par baat karo">💬</a>
 
 <script>
-  // Scroll par sections ka smooth reveal effect
-  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // Scroll par sections ka smooth reveal effect (staggered)
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var sibs = Array.prototype.slice.call(e.target.parentElement.querySelectorAll('.reveal'));
+      var i = Math.max(0, sibs.indexOf(e.target));
+      e.target.style.setProperty('--d', Math.min(i, 6) * 90 + 'ms');
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // Animated stat counters: count up when the stats scroll into view
+  function countUp(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    if (reduce || isNaN(target)){ return; }
+    var t0 = null, dur = 1400;
+    function tick(t){
+      if (!t0) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * eased).toFixed(dec) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  var cio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (e.isIntersecting){ countUp(e.target); cio.unobserve(e.target); }
+    });
+  }, {threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(function(el){ cio.observe(el); });
+
+  // Cursor glow: soft light follows the mouse (desktop only), lerped for a liquid feel
+  var glow = document.getElementById('cursorGlow');
+  if (fine && !reduce && glow){
+    var gx = innerWidth / 2, gy = innerHeight / 3, tx = gx, ty = gy, glowOn = false;
+    addEventListener('pointermove', function(e){
+      tx = e.clientX; ty = e.clientY;
+      if (!glowOn){ glow.classList.add('on'); glowOn = true; }
+    }, {passive:true});
+    (function loop(){
+      gx += (tx - gx) * .12; gy += (ty - gy) * .12;
+      glow.style.transform = 'translate3d(' + gx + 'px,' + gy + 'px,0)';
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  // Magnetic buttons: CTAs lean toward the cursor, spring back on leave
+  if (fine && !reduce){
+    document.querySelectorAll('.btn-grad, .btn-wa, .btn-ghost').forEach(function(b){
+      b.addEventListener('pointermove', function(e){
+        var r = b.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+        var dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+        b.style.transform = 'translate(' + (dx * 10).toFixed(1) + 'px,' + (dy * 7).toFixed(1) + 'px)';
+      });
+      b.addEventListener('pointerleave', function(){ b.style.transform = ''; });
+    });
+    // Card spotlight: glow follows the cursor across cards and work tiles
+    document.querySelectorAll('.card, .work-tile, .stat').forEach(function(el){
+      el.addEventListener('pointermove', function(e){
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+        el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+      });
+    });
+  }
+
+  // Button ripple on tap/click
+  document.addEventListener('pointerdown', function(e){
+    var t = e.target.closest && e.target.closest('.btn');
+    if (!t || reduce) return;
+    var r = t.getBoundingClientRect();
+    var s = document.createElement('span');
+    var size = Math.max(r.width, r.height) * 1.8;
+    s.className = 'ripple';
+    s.style.width = s.style.height = size + 'px';
+    s.style.left = (e.clientX - r.left - size / 2) + 'px';
+    s.style.top = (e.clientY - r.top - size / 2) + 'px';
+    t.appendChild(s);
+    s.addEventListener('animationend', function(){ s.remove(); });
+  }, {passive:true});
+
+  // Header turns frosted once you scroll
+  var header = document.querySelector('header');
+  addEventListener('scroll', function(){
+    header.classList.toggle('scrolled', scrollY > 24);
+  }, {passive:true});
 </script>
 
 </body>

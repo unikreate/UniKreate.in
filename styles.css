@@ -363,3 +363,92 @@ mark{background:none;color:transparent;background-image:linear-gradient(100deg,v
   .lb__count{display:none}
   .lb__cta{position:absolute;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:5;width:auto}
 }
+
+/* ================= LIQUID LAYER (v7) — glass, glow, motion. Content untouched. ================= */
+:root{ --spring:cubic-bezier(.2,1.35,.3,1); }
+
+/* Cursor glow: soft light following the mouse (desktop only, JS drives it) */
+.cursor-glow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;z-index:1;
+  background:radial-gradient(circle,rgba(47,214,194,.14) 0%,rgba(255,95,158,.07) 45%,transparent 68%);
+  opacity:0;transition:opacity .5s;will-change:transform}
+.cursor-glow.on{opacity:1}
+@media (hover:none),(pointer:coarse){.cursor-glow{display:none}}
+
+/* Background blobs: deeper, more liquid — slow breathing on top of the drift */
+.blob--a{background:radial-gradient(circle,rgba(47,214,194,.58) 0%,rgba(47,214,194,0) 62%)}
+.blob--b{background:radial-gradient(circle,rgba(255,148,80,.44) 0%,rgba(255,148,80,0) 62%)}
+.blob--c{background:radial-gradient(circle,rgba(255,95,158,.36) 0%,rgba(255,95,158,0) 62%)}
+.bg::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 0%,rgba(47,214,194,.07),transparent 60%);animation:breathe 9s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
+
+/* Hero phone: soft pulsing glow halo behind the frame */
+.phone::before{content:"";position:absolute;inset:-34px;border-radius:60px;pointer-events:none;z-index:-1;
+  background:radial-gradient(closest-side,rgba(47,214,194,.28),rgba(255,95,158,.12) 55%,transparent 75%);
+  filter:blur(10px);animation:breathe 6s ease-in-out infinite}
+.hero__title{background-size:100% 220%;animation:titleSheen 7s ease-in-out infinite}
+@keyframes titleSheen{0%,100%{background-position:50% 0%}50%{background-position:50% 100%}}
+
+/* Reel cards: cursor glow + image zoom + play-button pop on hover (touch unaffected) */
+.reel-card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;z-index:1;
+  background:radial-gradient(240px circle at var(--lx,50%) var(--ly,50%),rgba(47,214,194,.22),rgba(255,95,158,.1) 45%,transparent 65%)}
+.reel-card.is-lit::after{opacity:1}
+.reel-card img{transition:transform .7s var(--ease),filter .7s var(--ease)}
+.reel-card:hover img{transform:scale(1.07)}
+.reel-card__play{transition:transform .35s var(--spring),background .3s,border-color .3s}
+.reel-card:hover .reel-card__play{transform:translate(-50%,-50%) scale(1.16);background:rgba(47,214,194,.75);border-color:transparent}
+.reel-card:hover{border-color:rgba(47,214,194,.45)}
+.reel-card__info{transition:background .35s,border-color .35s}
+.reel-card:hover .reel-card__info{background:rgba(10,16,32,.55);border-color:rgba(255,255,255,.3)}
+
+/* Glass surfaces: liquid border glow on hover */
+.glass:hover{border-color:rgba(47,214,194,.32)}
+
+/* Buttons: liquid shine sweep on hover */
+.btn::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.35) 50%,transparent 68%);
+  transform:translateX(-130%);transition:transform .7s ease}
+.btn:hover::before{transform:translateX(130%)}
+.btn--primary::before{background:linear-gradient(115deg,transparent 32%,rgba(47,214,194,.35) 50%,transparent 68%)}
+
+/* Price cards: glow lift + sheen */
+.price-card{transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .4s}
+.price-card:hover{transform:translateY(-6px);border-color:rgba(47,214,194,.45);box-shadow:0 30px 60px -26px rgba(0,0,0,.85),0 0 44px -12px rgba(47,214,194,.35)}
+.price-card--hot:hover{border-color:rgba(47,214,194,.6)}
+
+/* Chips: springy press + glow when active */
+.chip{transition:color .35s,transform .25s var(--spring)}
+.chip:active{transform:scale(.93)}
+.filters__ind{box-shadow:0 8px 20px -10px rgba(255,255,255,.6),0 0 24px -6px rgba(47,214,194,.5)}
+
+/* Lightbox: springy panel + stage pop on open */
+.lb__panel{transition:transform .6s var(--spring),opacity .4s var(--ease)}
+@media (min-width:760px){
+  .lb.is-open .lb__stage{animation:lbStage .55s var(--spring)}
+}
+@keyframes lbStage{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
+@media (max-width:759px){
+  .lb.is-open .lb__stage{animation:lbStageM .55s var(--spring)}
+}
+@keyframes lbStageM{from{opacity:0;transform:translate(-50%,-50%) scale(.93)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.lb__arrow{transition:scale .2s var(--spring),background .3s,border-color .3s}
+.lb__arrow:hover{border-color:rgba(47,214,194,.5);background:rgba(47,214,194,.18)}
+.lb__x{transition:scale .2s var(--spring),background .3s,transform .3s}
+.lb__x:hover{transform:rotate(90deg);background:rgba(255,95,158,.35)}
+
+/* Dock: active link glows */
+.dock__link.is-active{text-shadow:0 0 18px rgba(47,214,194,.8)}
+.brand{transition:scale .2s var(--spring),box-shadow .3s}
+.brand:hover{box-shadow:0 0 30px -6px rgba(47,214,194,.5)}
+
+/* Steps / services / experience: icon + number glow on hover */
+.step:hover .step__n,.svc__item:hover .svc__n{filter:brightness(1.25)}
+.step,.svc__item,.exp__item{transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .4s}
+.step:hover,.svc__item:hover,.exp__item:hover{border-color:rgba(47,214,194,.35)}
+
+/* Reduced motion: liquid layer goes still */
+@media (prefers-reduced-motion:reduce){
+  .cursor-glow,.bg::after,.phone::before,.hero__title{animation:none!important}
+  .reel-card img{transition:none}
+  .btn::before{transition:none}
+  .lb.is-open .lb__stage{animation:none}
+}
