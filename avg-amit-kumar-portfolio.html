@@ -1,328 +1,286 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amit Kumar — Video Editor | Portfolio | UniKreate</title>
-<meta name="description" content="Amit Kumar — Video Editor for creators & brands. Reels, Shorts, promos and talking-head videos. Shot on iPhone 17, edited on CapCut. 24–48h delivery. Working with remote clients worldwide.">
-<link rel="icon" type="image/png" href="878a2b64-6e7f-44da-82f5-53b882c95af1.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --dark:#0b1220; --dark2:#101a30; --card:#111d36;
-    --teal:#00b8b8; --cyan:#19c2dc;
-    --orange:#ff7a18; --pink:#ff2e88;
-    --text:#eef2f7; --muted:#a8b3c5; --line:#1e2c4e;
-    --grad:linear-gradient(90deg,var(--teal),var(--cyan),var(--orange),var(--pink));
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:'Inter',system-ui,sans-serif;background:var(--dark);color:var(--text);line-height:1.6;overflow-x:hidden}
-  h1,h2,h3{font-family:'Poppins',sans-serif;line-height:1.2}
-  a{text-decoration:none;color:inherit}
-  img{max-width:100%}
-  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-  .grad-text{background:var(--grad);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
-  @keyframes shine{to{background-position:200% center}}
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.in{opacity:1;transform:none}
-
-  /* Header */
-  header{position:sticky;top:0;z-index:50;background:rgba(11,18,32,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:14px}
-  .nav img{height:44px;width:auto}
-  .links{display:flex;gap:24px;font-weight:500;font-size:15px}
-  .links a{color:var(--muted)} .links a:hover{color:#fff}
-  .links a.active{color:#fff}
-  .btn{display:inline-block;padding:12px 24px;border-radius:999px;font-weight:600;font-size:15px;transition:.25s;border:none;cursor:pointer}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.35)}
-  .btn-wa{background:#25d366;color:#06280f}
-  .btn-grad{background:linear-gradient(90deg,var(--teal),var(--pink));color:#fff}
-  .btn-ghost{border:1px solid #33436b;color:#fff;background:transparent}
-  @media(max-width:760px){.links{display:none}.nav img{height:36px}}
-
-  /* Hero */
-  .hero{position:relative;padding:96px 0 76px;text-align:center;background:radial-gradient(60% 90% at 50% 0%,#16294e 0%,var(--dark) 72%)}
-  .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none}
-  .b1{width:280px;height:280px;background:#0e5f6e;top:-60px;left:-60px}
-  .b2{width:260px;height:260px;background:#5e1038;top:10px;right:-70px}
-  .badge{display:inline-block;padding:6px 16px;border:1px solid #2a3c66;border-radius:999px;color:var(--muted);font-size:13px;margin-bottom:22px;background:rgba(255,255,255,.03)}
-  .hero h1{font-size:clamp(36px,6.4vw,62px);font-weight:800}
-  .hero p{color:var(--muted);max-width:660px;margin:20px auto 32px;font-size:17px}
-  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .trust{margin-top:30px;color:var(--muted);font-size:14px}
-  .trust b{color:#fff}
-  .hero-tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
-  .hero-tags span{border:1px solid #2a3c66;border-radius:999px;padding:6px 14px;font-size:13px;color:var(--muted);background:rgba(255,255,255,.03)}
-
-  /* Stats */
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:34px 0 6px}
-  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
-  .stat{text-align:center;background:var(--dark2);border:1px solid var(--line);border-radius:16px;padding:20px 10px}
-  .stat .num{font-family:'Poppins';font-size:26px;font-weight:800}
-  .stat .lbl{color:var(--muted);font-size:13px;margin-top:2px}
-
-  /* Sections */
-  section{padding:72px 0}
-  .sec-head{text-align:center;margin-bottom:42px}
-  .sec-head h2{font-size:clamp(26px,4vw,38px);font-weight:700}
-  .sec-head p{color:var(--muted);margin-top:8px}
-  .sec-kicker{font-size:13px;letter-spacing:2px;color:var(--cyan);font-weight:600;margin-bottom:10px}
-  .grid{display:grid;gap:20px}
-  .g3{grid-template-columns:repeat(3,1fr)}
-  .g4{grid-template-columns:repeat(2,1fr)}
-  @media(max-width:860px){.g4{grid-template-columns:1fr}}
-  @media(max-width:860px){.g3{grid-template-columns:1fr}}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;transition:.25s}
-  .card:hover{transform:translateY(-5px);border-color:#2f4472}
-  .card h3{font-size:19px;margin:12px 0 8px}
-  .card p{color:var(--muted);font-size:15px}
-  .icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;background:#0e2a38}
-  .icon.p{background:#33102a}.icon.o{background:#38200c}
-  .step-num{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--pink));display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:800;font-size:18px;color:#fff}
-
-  /* Work */
-  .work-tile{border-radius:18px;padding:34px 24px;text-align:center;font-family:'Poppins';font-weight:700;font-size:19px;color:#fff;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:.25s}
-  .work-tile:hover{transform:translateY(-5px) scale(1.01)}
-  .work-tile span{font-family:'Inter';font-weight:400;font-size:14px;opacity:.88}
-  .w1{background:linear-gradient(135deg,#00b8b8,#0e7cc4)}
-  .w2{background:linear-gradient(135deg,#ff7a18,#ff2e63)}
-  .w3{background:linear-gradient(135deg,#7b2ff7,#ff2e88)}
-  .play{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:20px}
-
-  /* Timeline */
-  .timeline{max-width:760px;margin:0 auto}
-  .tl-item{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 26px;margin-bottom:14px}
-  .tl-item .when{font-size:13px;color:var(--cyan);font-weight:600;letter-spacing:.5px}
-  .tl-item h3{font-size:18px;margin:6px 0 4px}
-  .tl-item p{color:var(--muted);font-size:15px}
-
-  /* About + Contact */
-  .about{background:var(--dark2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .about .wrap{display:flex;gap:34px;align-items:center;flex-wrap:wrap}
-  .about img.dp{width:150px;height:150px;border-radius:28px;background:#fff;padding:10px}
-  .about .txt{flex:1;min-width:260px}
-  .about p{color:var(--muted);margin-top:10px}
-  .skills{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-  .skills span{border:1px solid #2a3c66;border-radius:999px;padding:6px 14px;font-size:13px;color:var(--text);background:rgba(255,255,255,.03)}
-  .contact{text-align:center}
-  .contact p{color:var(--muted);margin:10px auto 26px;max-width:540px}
-  footer{padding:30px 0;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
-  footer img{height:34px;margin-bottom:8px}
-
-  /* Floating WhatsApp */
-  .float-wa{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 10px 26px rgba(0,0,0,.45);z-index:60;animation:pulse 2.2s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.classList.add('js')</script>
+<title>Amit Kumar — Video Editor | Portfolio</title>
+<meta name="description" content="Amit Kumar — Video Editor for creators & brands. Reels, promos, talking-head videos, wedding & events. Shot on iPhone 17, edited on CapCut. 24–48h delivery. Working with remote clients worldwide.">
+<meta name="theme-color" content="#0b1222">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Amit Kumar — Video Editor | Portfolio">
+<meta property="og:description" content="Reels, promos, talking-head videos. DM @avgamitkumar on Instagram.">
+<meta property="og:image" content="878a2b64-6e7f-44da-82f5-53b882c95af1.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="878a2b64-6e7f-44da-82f5-53b882c95af1.png" type="image/png">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="bg" aria-hidden="true">
+  <span class="blob blob--a" data-speed="0.10"></span>
+  <span class="blob blob--b" data-speed="0.04"></span>
+  <span class="blob blob--c" data-speed="0.14"></span>
+  <span class="blob blob--d" data-speed="0.07"></span>
+</div>
 
-<!-- ===== HEADER ===== -->
-<header>
-  <div class="wrap nav">
-    <img src="878a2b64-6e7f-44da-82f5-53b882c95af1.png" alt="UniKreate — Marketing Agency" style="background:#fff;border-radius:10px;padding:4px 8px" onerror="this.style.display='none';document.getElementById('brandText').style.display='block'">
-    <span id="brandText" style="display:none;font-family:Poppins;font-weight:800;font-size:24px">Uni<span class="grad-text">Kreate</span></span>
-    <nav class="links">
-      <a href="index.html">Home</a>
-      <a href="index.html#services">Services</a>
-      <a href="#work">Work</a>
-      <a href="avg-amit-kumar-portfolio.html" class="active">Portfolio</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
-    <a class="btn btn-wa" href="https://wa.me/919149379162?text=Hi%20Amit!%20I%20want%20a%20video%20edited." target="_blank">WhatsApp Me</a>
-  </div>
-</header>
+<a class="skip" href="#work">Skip to my work</a>
 
-<!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="blob b1"></div><div class="blob b2"></div>
-  <div class="wrap">
-    <div class="badge">🎬 VIDEO EDITOR · INDIA · WORKING WORLDWIDE</div>
-    <h1>Amit Kumar<br><span class="grad-text">Video Editor.</span></h1>
-    <p>I edit short-form videos for creators &amp; brands — reels people actually watch till the end. Promos, talking-head videos, YouTube Shorts and long-form edits. Learning editing from scratch is hard — I handle the editing, so you can focus on creating.</p>
-    <div class="cta">
-      <a class="btn btn-grad" href="#work">See My Work</a>
-      <a class="btn btn-ghost" href="https://wa.me/919149379162?text=Hi%20Amit!%20I%20want%20a%20video%20edited." target="_blank">Work With Me</a>
-    </div>
-    <div class="hero-tags">
-      <span>📱 Shot on iPhone 17</span>
-      <span>✂️ CapCut — Mobile Editing</span>
-      <span>⚡ 24–48h Delivery</span>
-      <span>🌍 Remote Clients Welcome</span>
-    </div>
-    <div class="stats">
-      <div class="stat"><div class="num grad-text">1.5</div><div class="lbl">Years Experience</div></div>
-      <div class="stat"><div class="num grad-text">24–48h</div><div class="lbl">Fast Delivery</div></div>
-      <div class="stat"><div class="num grad-text">100%</div><div class="lbl">Original Work, No Copy</div></div>
-      <div class="stat"><div class="num grad-text">2</div><div class="lbl">Revisions Per Video</div></div>
-    </div>
-  </div>
-</section>
+<a class="brand glass" href="#top" aria-label="Amit Kumar, back to top">AMIT KUMAR</a>
 
-<!-- ===== HOW IT WORKS ===== -->
-<section style="padding-top:6px">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-kicker">01 / HOW IT WORKS</div>
-      <h2>3 Steps. <span class="grad-text">That's It.</span></h2>
-      <p>Simple, fast and fully remote — wherever you are in the world.</p>
-    </div>
-    <div class="grid g3">
-      <div class="card reveal"><div class="step-num">1</div><h3>Send Your Clips</h3><p>Send your raw clips on WhatsApp or Google Drive, and tell me what kind of video you want.</p></div>
-      <div class="card reveal"><div class="step-num">2</div><h3>I Edit It</h3><p>Hook in the first 2 seconds, tight cuts, subtitles, music on the beat and clean colour — edited in 24–48 hours.</p></div>
-      <div class="card reveal"><div class="step-num">3</div><h3>Delivery + Revisions</h3><p>You get a ready-to-post video. 2 revisions included, so it comes out exactly how you want it.</p></div>
-    </div>
-  </div>
-</section>
+<nav class="dock glass" id="dock" aria-label="Main">
+  <span class="dock__ind" aria-hidden="true"></span>
+  <a class="dock__link" href="#work">Work</a>
+  <a class="dock__link" href="#experience">Experience</a>
+  <a class="dock__link" href="#about">About</a>
+  <a class="dock__link dock__dm" href="https://ig.me/m/avgamitkumar" rel="noopener" target="_blank">DM</a>
+</nav>
 
-<!-- ===== SERVICES ===== -->
-<section id="services" style="padding-top:6px">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-kicker">02 / SERVICES</div>
-      <h2>What <span class="grad-text">I Do</span></h2>
-      <p>Everything a creator or brand needs to grow through video.</p>
-    </div>
-    <div class="grid g3">
-      <div class="card reveal">
-        <div class="icon">🎬</div>
-        <h3>Reels &amp; Shorts Editing</h3>
-        <p>Instagram Reels and YouTube Shorts that hook in the first second — cuts, music, beat sync and on-screen text.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon p">📣</div>
-        <h3>Promo Videos</h3>
-        <p>Promos for schools, shops and hotels. Show the place, sell the vibe.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon o">🎙️</div>
-        <h3>Talking-Head Videos</h3>
-        <p>Clean, watchable talking-head edits — jump cuts, captions and pacing that keep viewers till the end.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon">💍</div>
-        <h3>Wedding &amp; Pre-Wedding</h3>
-        <p>Shoot + edit. Golden hour, real moments, one beautiful story.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon p">🎥</div>
-        <h3>Events</h3>
-        <p>Competitions, functions and school events — full coverage, then one strong highlight reel.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon o">▶️</div>
-        <h3>YouTube Long-Form</h3>
-        <p>Long video edits — story flow, clean cuts, captions and thumbnail-ready moments.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<main id="top">
 
-<!-- ===== WORK ===== -->
-<section id="work" style="padding-top:6px">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-kicker">03 / SELECTED WORK</div>
-      <h2>Work That <span class="grad-text">Speaks</span></h2>
-      <p>Real work for real clients.<br><b style="color:#fff">Tap any tile — the reel opens on Instagram 👇</b></p>
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="hero__copy">
+      <p class="label">[ VIDEO EDITOR · INDIA · REMOTE WORLDWIDE ]</p>
+      <h1 class="hero__title" id="heroTitle">AMIT KUMAR</h1>
+      <p class="hero__name">Video Editor — Reels, Promos &amp; Talking-Head Videos</p>
+      <p class="hero__pitch">I edit short-form videos for <mark>creators &amp; brands</mark>.</p>
+      <p class="hero__sub">Reels people watch till the end. Promos, talking-head videos, wedding films and YouTube.</p>
+      <div class="hero__ctas">
+        <button class="btn btn--primary" type="button" data-hire><span aria-hidden="true">◎</span> Hire me · DM @avgamitkumar</button>
+        <a class="btn btn--glass" href="#work">See my work ↓</a>
+      </div>
+      <ul class="chips" role="list">
+        <li>Shot on iPhone 17 📱</li>
+        <li>CapCut (mobile editing)</li>
+        <li>24–48h delivery</li>
+      </ul>
     </div>
-    <div class="grid g4">
-      <a href="https://www.instagram.com/reel/DW-pgz2kULc/" target="_blank"><div class="work-tile w1 reveal"><div class="play">▶</div>Hotel Pratap — Promo Reel<span>Hotel Tour • Chokothali</span></div></a>
-      <a href="https://www.instagram.com/reel/Dakg4mbvqJK/" target="_blank"><div class="work-tile w2 reveal"><div class="play">▶</div>Shree Shyam Artificial<span>1 Gram Gold Jewellery • Etawah</span></div></a>
-      <a href="https://www.instagram.com/reel/Dafc8NxP4l7/" target="_blank"><div class="work-tile w3 reveal"><div class="play">▶</div>Shree Shyam — New Collection<span>Necklace • Maang Tikka</span></div></a>
-      <a href="https://www.instagram.com/reel/DXVabjWEi5W/" target="_blank"><div class="work-tile w1 reveal"><div class="play">▶</div>Paankunwar International School<span>Admissions Open 2026-27</span></div></a>
-    </div>
-    <p style="text-align:center;margin-top:24px;color:var(--muted)">Also worked with: <a href="https://www.instagram.com/awsetawah" target="_blank" style="color:#19c2dc;font-weight:600">Aristotle World School — @awsetawah</a> &nbsp;•&nbsp; <a href="https://www.instagram.com/gramapp.co" target="_blank" style="color:#ff5c9e;font-weight:600">Gram App — @gramapp.co</a> &nbsp;•&nbsp; Radiance High School, Adilabad</p>
-  </div>
-</section>
+    <figure class="phone tilt" data-tilt="1.8">
+      <div class="phone__screen">
+        <video autoplay muted loop playsinline preload="auto" data-auto aria-label="Reel preview">
+          <source src="https://awara.sites.tab.bot/assets/loops/hero.mp4" type="video/mp4">
+        </video>
+      </div>
+      <figcaption class="phone__cap"><span>LIVE PREVIEW</span><span>tap for sound</span></figcaption>
+    </figure>
+  </section>
 
-<!-- ===== EXPERIENCE ===== -->
-<section style="padding-top:6px">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-kicker">04 / EXPERIENCE</div>
-      <h2>Where I Have <span class="grad-text">Worked</span></h2>
-    </div>
-    <div class="timeline">
-      <div class="tl-item reveal">
-        <div class="when">OCTOBER 2026 — PRESENT</div>
-        <h3>Videographer — Radiance High School, Adilabad</h3>
-        <p>Video shoot and edit for classroom activities and school events.</p>
-      </div>
-      <div class="tl-item reveal">
-        <div class="when">JUNE 2026 — PRESENT</div>
-        <h3>Freelance Video Editor</h3>
-        <p>Short-form video editing and content for creators and brands.</p>
-      </div>
-      <div class="tl-item reveal">
-        <div class="when">OCTOBER 2026 — PRESENT</div>
-        <h3>Marketing Intern — Kalp Intelligence</h3>
-        <p>Marketing and content work alongside video editing.</p>
-      </div>
-      <div class="tl-item reveal">
-        <div class="when">JANUARY — MAY 2026</div>
-        <h3>Marketing Intern — Gram App</h3>
-        <p>Marketing, content planning and social media work.</p>
-      </div>
-      <div class="tl-item reveal">
-        <div class="when">OCTOBER — NOVEMBER</div>
-        <h3>Thumbnail &amp; Scripting Intern — Webwrite Services</h3>
-        <p>Thumbnails and scripts for video content.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- STEPS -->
+  <section class="sec" id="steps" aria-labelledby="stepsTitle">
+    <p class="label reveal">[ 01 / HOW IT WORKS ]</p>
+    <h2 class="sec-title reveal" id="stepsTitle">3 steps. That's it.</h2>
+    <ol class="steps__list" role="list">
+      <li class="step glass tilt reveal"><span class="step__n">1</span><div><h3>DM me</h3><p>Message <a href="https://ig.me/m/avgamitkumar" rel="noopener" target="_blank">@avgamitkumar</a> on Instagram.</p></div></li>
+      <li class="step glass tilt reveal"><span class="step__n">2</span><div><h3>Send your clips</h3><p>Send your raw clips and tell me what kind of reel you want.</p></div></li>
+      <li class="step glass tilt reveal"><span class="step__n">3</span><div><h3>Get your edited reel in 24–48h</h3><p>A ready-to-post reel — with music and clean cuts.</p></div></li>
+    </ol>
+  </section>
 
-<!-- ===== ABOUT ===== -->
-<section class="about" id="about">
-  <div class="wrap">
-    <img src="dp.png" alt="Amit Kumar — Video Editor" class="dp" onerror="this.style.display='none'">
-    <div class="txt">
-      <h2>About <span class="grad-text">Me</span></h2>
-      <p>I'm Amit Kumar, a video editor from India with 1.5 years of experience. I work with creators, schools, hotels and brands — shooting on iPhone 17 and editing on CapCut mobile. Fast work, clean edits, and videos made to be watched till the end. I work remotely with clients in India and abroad.</p>
-      <div class="skills">
-        <span>CapCut (Mobile)</span>
-        <span>Shot on iPhone 17</span>
-        <span>Canva (Thumbnails)</span>
-        <span>VN</span>
-        <span>Premiere Mobile</span>
-        <span>Script Writing</span>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- SERVICES -->
+  <section class="sec" id="services" aria-labelledby="servicesTitle">
+    <p class="label reveal">[ 02 / SERVICES ]</p>
+    <h2 class="sec-title reveal" id="servicesTitle">What I do</h2>
+    <ol class="svc" role="list">
+      <li class="svc__item glass tilt reveal"><span class="svc__n">01</span><h3>Reels Editing <span class="pill">#1</span></h3><p>Instagram reels that hook from the first second. Cuts, music, beat sync, captions.</p></li>
+      <li class="svc__item glass tilt reveal"><span class="svc__n">02</span><h3>Promo Videos</h3><p>Promos for schools, shops and hotels. Show the place, sell the vibe.</p></li>
+      <li class="svc__item glass tilt reveal"><span class="svc__n">03</span><h3>Wedding &amp; Pre-Wedding</h3><p>Shoot + edit. Golden hour, real moments, one beautiful story.</p></li>
+      <li class="svc__item glass tilt reveal"><span class="svc__n">04</span><h3>Events</h3><p>Competitions, functions, school events. Full coverage, then one great highlight.</p></li>
+      <li class="svc__item glass tilt reveal"><span class="svc__n">05</span><h3>YouTube Long-form</h3><p>Long-video edits: story flow, cuts, captions, thumbnail-ready moments.</p></li>
+      <li class="svc__item glass tilt reveal"><span class="svc__n">06</span><h3>Shoot</h3><p>I shoot myself. Shot on iPhone 17 📱, handheld and cinematic.</p></li>
+    </ol>
+  </section>
 
-<!-- ===== WORK WITH ME ===== -->
-<section class="contact" id="contact">
-  <div class="wrap">
-    <h2>Let's Work <span class="grad-text">Together</span></h2>
-    <p>Need a reel edited? Send me your raw clips — I'll take care of the rest. DM me on Instagram or WhatsApp, or write to me by email.</p>
-    <div class="cta">
-      <a class="btn btn-wa" href="https://wa.me/919149379162?text=Hi%20Amit!%20I%20want%20a%20video%20edited." target="_blank">WhatsApp — +91 91493 79162</a>
-      <a class="btn btn-ghost" href="https://instagram.com/avgamitkumar" target="_blank">Instagram — @avgamitkumar</a>
-      <a class="btn btn-ghost" href="mailto:amitkomar8050@gmail.com" target="_blank">Email — amitkomar8050@gmail.com</a>
+  <!-- WORK -->
+  <section class="sec work" id="work" aria-labelledby="workTitle">
+    <p class="label reveal">[ 03 / MY WORK ]</p>
+    <h2 class="sec-title reveal" id="workTitle">See my work</h2>
+    <p class="note reveal">Tap any reel to watch it in full screen. Pick a category to filter.</p>
+    <div class="filters glass reveal" role="group" aria-label="Filter reels">
+      <span class="filters__ind" aria-hidden="true"></span>
+      <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" type="button" data-f="schools" aria-pressed="false">Schools</button>
+      <button class="chip" type="button" data-f="shops" aria-pressed="false">Shops</button>
+      <button class="chip" type="button" data-f="office" aria-pressed="false">Office</button>
+      <button class="chip" type="button" data-f="realestate" aria-pressed="false">Real Estate</button>
+      <button class="chip" type="button" data-f="events" aria-pressed="false">Events</button>
+      <button class="chip" type="button" data-f="fashion" aria-pressed="false">Fashion</button>
+      <button class="chip" type="button" data-f="talkinghead" aria-pressed="false">Talking Head</button>
+      <button class="chip" type="button" data-f="motivational" aria-pressed="false">Motivational</button>
     </div>
-    <p style="margin-top:22px;font-size:14px">Part of <a href="index.html" style="color:#19c2dc;font-weight:600">UniKreate</a> — Marketing Agency • Video Editing • Social Media • Ads</p>
-  </div>
-</section>
+    <ul class="reels" role="list">
+      <li class="reel-card tilt reveal" data-cat="schools" data-title="School Promo — Dream Big" data-sub="S.D. Convent Public School · Admissions promo" data-tag="S1" data-embed="https://drive.google.com/file/d/1EfFwB3rR7611D7mzZV6u8il3VMxOXEYp/preview" tabindex="0" role="button" aria-label="School Promo — Dream Big">
+        <iframe src="https://drive.google.com/file/d/1EfFwB3rR7611D7mzZV6u8il3VMxOXEYp/preview" title="School Promo — Dream Big" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">S1</span><h3>School Promo — Dream Big</h3><p>S.D. Convent Public School · Admissions promo</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="schools" data-title="School Promo — Admissions Open" data-sub="S.D. Convent Public School · Campus film" data-tag="S2" data-embed="https://drive.google.com/file/d/1aK2A6xjDAdSQ9BrtQktBGGf_bjKCl_jm/preview" tabindex="0" role="button" aria-label="School Promo — Admissions Open">
+        <iframe src="https://drive.google.com/file/d/1aK2A6xjDAdSQ9BrtQktBGGf_bjKCl_jm/preview" title="School Promo — Admissions Open" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">S2</span><h3>School Promo — Admissions Open</h3><p>S.D. Convent Public School · Campus film</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="shops" data-title="Jewellery Promo — Talking Head" data-sub="Artificial jewellery · Product promo" data-tag="P1" data-embed="https://drive.google.com/file/d/1P_Z3QGrKc_2KygOYUq4wAFcff1tZ_wCc/preview" tabindex="0" role="button" aria-label="Jewellery Promo — Talking Head">
+        <iframe src="https://drive.google.com/file/d/1P_Z3QGrKc_2KygOYUq4wAFcff1tZ_wCc/preview" title="Jewellery Promo — Talking Head" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">P1</span><h3>Jewellery Promo — Talking Head</h3><p>Artificial jewellery · Product promo</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="shops" data-title="Jewellery Showcase" data-sub="Necklaces &amp; bangles · Shop display" data-tag="P2" data-embed="https://drive.google.com/file/d/1DcTdS3GQmyjStyyhdCz5Oy9dntnzgsfu/preview" tabindex="0" role="button" aria-label="Jewellery Showcase">
+        <iframe src="https://drive.google.com/file/d/1DcTdS3GQmyjStyyhdCz5Oy9dntnzgsfu/preview" title="Jewellery Showcase" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">P2</span><h3>Jewellery Showcase</h3><p>Necklaces &amp; bangles · Shop display</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="office" data-title="Office Comedy — Cartoon Break" data-sub="Workplace skit · Shoot &amp; edit" data-tag="O1" data-embed="https://drive.google.com/file/d/1695Vf45d1Xk1xD7cJP0efDJVdHorOygj/preview" tabindex="0" role="button" aria-label="Office Comedy — Cartoon Break">
+        <iframe src="https://drive.google.com/file/d/1695Vf45d1Xk1xD7cJP0efDJVdHorOygj/preview" title="Office Comedy — Cartoon Break" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">O1</span><h3>Office Comedy — Cartoon Break</h3><p>Workplace skit · Shoot &amp; edit</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="office" data-title="Office Comedy — 7 PM Sharp" data-sub="Workplace skit · Shoot &amp; edit" data-tag="O2" data-embed="https://drive.google.com/file/d/1vdQBd5_BBNRpPg_I6WDUG2I7hFH2XDvm/preview" tabindex="0" role="button" aria-label="Office Comedy — 7 PM Sharp">
+        <iframe src="https://drive.google.com/file/d/1vdQBd5_BBNRpPg_I6WDUG2I7hFH2XDvm/preview" title="Office Comedy — 7 PM Sharp" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">O2</span><h3>Office Comedy — 7 PM Sharp</h3><p>Workplace skit · Shoot &amp; edit</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="realestate" data-title="Property Promo" data-sub="Real estate walkthrough · Gupta" data-tag="R1" data-embed="https://drive.google.com/file/d/12kUk3AnAhJ0RjK8vZolOc5KPlo73lEfu/preview" tabindex="0" role="button" aria-label="Property Promo">
+        <iframe src="https://drive.google.com/file/d/12kUk3AnAhJ0RjK8vZolOc5KPlo73lEfu/preview" title="Property Promo" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">R1</span><h3>Property Promo</h3><p>Real estate walkthrough · Gupta</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="events" data-title="Event Coverage" data-sub="Competition day · Shoot &amp; edit" data-tag="E1" data-embed="https://drive.google.com/file/d/1PSvLFGjvm06eZBLQIOGkwt1OV4lRuRWG/preview" tabindex="0" role="button" aria-label="Event Coverage">
+        <iframe src="https://drive.google.com/file/d/1PSvLFGjvm06eZBLQIOGkwt1OV4lRuRWG/preview" title="Event Coverage" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">E1</span><h3>Event Coverage</h3><p>Competition day · Shoot &amp; edit</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="fashion" data-title="Fashion Reel — Street Style" data-sub="Creator reel · Shoot &amp; edit" data-tag="F1" data-embed="https://drive.google.com/file/d/1vs7-U43_ygfc8EcI9OrpZXnSNwjdLfM7/preview" tabindex="0" role="button" aria-label="Fashion Reel — Street Style">
+        <iframe src="https://drive.google.com/file/d/1vs7-U43_ygfc8EcI9OrpZXnSNwjdLfM7/preview" title="Fashion Reel — Street Style" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">F1</span><h3>Fashion Reel — Street Style</h3><p>Creator reel · Shoot &amp; edit</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="talkinghead" data-title="Talking Head — Podcast Edit" data-sub="Podcast-style reel · Dubai visuals" data-tag="T1" data-embed="https://drive.google.com/file/d/1U1ZHjJknqvEOjS6zo9KcB2qNoZRIJrU5/preview" tabindex="0" role="button" aria-label="Talking Head — Podcast Edit">
+        <iframe src="https://drive.google.com/file/d/1U1ZHjJknqvEOjS6zo9KcB2qNoZRIJrU5/preview" title="Talking Head — Podcast Edit" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">T1</span><h3>Talking Head — Podcast Edit</h3><p>Podcast-style reel · Dubai visuals</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="talkinghead" data-title="Talking Head — Financially Free" data-sub="English captions · Talking-head reel" data-tag="T2" data-embed="https://drive.google.com/file/d/1puEfXlhP1rOyHwePEIlnMLcY5GMytP2g/preview" tabindex="0" role="button" aria-label="Talking Head — Financially Free">
+        <iframe src="https://drive.google.com/file/d/1puEfXlhP1rOyHwePEIlnMLcY5GMytP2g/preview" title="Talking Head — Financially Free" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">T2</span><h3>Talking Head — Financially Free</h3><p>English captions · Talking-head reel</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="talkinghead" data-title="Talking Head — One Decision" data-sub="English captions · YouTube Short" data-tag="T3" data-embed="https://drive.google.com/file/d/1JoqKxs-kL02tPTGaIkqr-7WcVJDl1NmT/preview" tabindex="0" role="button" aria-label="Talking Head — One Decision">
+        <iframe src="https://drive.google.com/file/d/1JoqKxs-kL02tPTGaIkqr-7WcVJDl1NmT/preview" title="Talking Head — One Decision" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">T3</span><h3>Talking Head — One Decision</h3><p>English captions · YouTube Short</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="talkinghead" data-title="Talking Head — Effort &amp; Results" data-sub="English captions · Talking-head reel" data-tag="T4" data-embed="https://drive.google.com/file/d/1S0QawrKa0LcjVlJeD95dUl0y1zuPpZ-Z/preview" tabindex="0" role="button" aria-label="Talking Head — Effort and Results">
+        <iframe src="https://drive.google.com/file/d/1S0QawrKa0LcjVlJeD95dUl0y1zuPpZ-Z/preview" title="Talking Head — Effort &amp; Results" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">T4</span><h3>Talking Head — Effort &amp; Results</h3><p>English captions · Talking-head reel</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="talkinghead" data-title="Talking Head — Business" data-sub="Business reel · Motion graphics" data-tag="T5" data-embed="https://drive.google.com/file/d/1XAV518aW96YmVK0k295LTouYSO0jJoLy/preview" tabindex="0" role="button" aria-label="Talking Head — Business">
+        <iframe src="https://drive.google.com/file/d/1XAV518aW96YmVK0k295LTouYSO0jJoLy/preview" title="Talking Head — Business" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">T5</span><h3>Talking Head — Business</h3><p>Business reel · Motion graphics</p></div>
+      </li>
+      <li class="reel-card tilt reveal" data-cat="motivational" data-title="Motivational Edit — Our Work" data-sub="$5 edit vs our work · Cinematic English captions" data-tag="M1" data-embed="https://drive.google.com/file/d/1HOAz-369hPiplzQVT6HI1nb5QCunB34k/preview" tabindex="0" role="button" aria-label="Motivational Edit — Our Work">
+        <iframe src="https://drive.google.com/file/d/1HOAz-369hPiplzQVT6HI1nb5QCunB34k/preview" title="Motivational Edit — Our Work" loading="lazy" allowfullscreen></iframe>
+        <div class="reel-card__info"><span class="reel-card__tag">M1</span><h3>Motivational Edit — Our Work</h3><p>$5 edit vs our work · Cinematic English captions</p></div>
+      </li>
+    </ul>
+  </section>
 
-<footer>
-  <div class="wrap">
-    <img src="878a2b64-6e7f-44da-82f5-53b882c95af1.png" alt="UniKreate" style="background:#fff;border-radius:10px;padding:4px 8px">
-    <div style="margin-bottom:8px"><a href="https://wa.me/919149379162" target="_blank" style="color:#25d366;font-weight:600">WhatsApp: +91 91493 79162</a> &nbsp;•&nbsp; <a href="https://instagram.com/avgamitkumar" target="_blank" style="color:#ff5c9e;font-weight:600">Instagram: @avgamitkumar</a> &nbsp;•&nbsp; <a href="mailto:amitkomar8050@gmail.com" style="color:#19c2dc;font-weight:600">amitkomar8050@gmail.com</a></div>
-    <div>© 2026 Amit Kumar — Video Editor • UniKreate</div>
-  </div>
+  <!-- EXPERIENCE -->
+  <section class="sec" id="experience" aria-labelledby="expTitle">
+    <p class="label reveal">[ 04 / EXPERIENCE ]</p>
+    <h2 class="sec-title reveal" id="expTitle">Where I've worked</h2>
+    <ol class="exp" role="list">
+      <li class="exp__item glass tilt reveal">
+        <span class="exp__when">Oct 2026 to present <span class="pill">Current</span></span>
+        <h3>Videographer</h3>
+        <p class="exp__org">Radiance High School</p>
+        <p class="exp__desc">Shooting and editing videos for school activities, classes and events.</p>
+      </li>
+      <li class="exp__item glass tilt reveal">
+        <span class="exp__when">Oct 2026 to present <span class="pill">Current</span></span>
+        <h3>Marketing Intern</h3>
+        <p class="exp__org">Kalp Intelligence</p>
+        <p class="exp__desc">Marketing internship.</p>
+      </li>
+      <li class="exp__item glass tilt reveal">
+        <span class="exp__when">Jun 2026 to present</span>
+        <h3>Video Editing &amp; Short-form</h3>
+        <p class="exp__org">Freelance</p>
+        <p class="exp__desc">Editing short-form videos for creators and brands.</p>
+      </li>
+      <li class="exp__item glass tilt reveal">
+        <span class="exp__when">Jan – May 2026</span>
+        <h3>Marketing Intern</h3>
+        <p class="exp__org"><a href="https://www.instagram.com/gramapp.co" rel="noopener" target="_blank">Gram App</a></p>
+        <p class="exp__desc">Marketing work, internship.</p>
+      </li>
+      <li class="exp__item glass tilt reveal">
+        <span class="exp__when">Oct – Nov</span>
+        <h3>Thumbnail &amp; Scripting</h3>
+        <p class="exp__org"><a href="https://www.instagram.com/webwriteservices" rel="noopener" target="_blank">Webwrite Services</a></p>
+        <p class="exp__desc">Internship. Thumbnails and scripts.</p>
+      </li>
+      <li class="exp__item glass tilt reveal">
+        <span class="exp__when">1.5 years</span>
+        <h3>Marketing &amp; Video Editing</h3>
+        <p class="exp__org">Canva, CapCut Mobile, Premiere Mobile, VN</p>
+        <p class="exp__desc">Marketing; video editing; video shoots; script writing; page management; idea generation; prompt writing for ChatGPT and Gemini.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sec" id="about" aria-labelledby="aboutTitle">
+    <p class="label reveal">[ 05 / ABOUT ]</p>
+    <h2 class="sec-title reveal" id="aboutTitle">I'm Amit</h2>
+    <div class="about__box glass tilt reveal">
+      <p class="about__lead">Video editor. Reels, promos, talking-head videos, wedding films and events.</p>
+      <p>I've worked for shops, schools and hotels. Everything on my phone: shot on iPhone 17 📱, edited in CapCut (mobile). Fast work, clean edits.</p>
+      <p>Editing and content creation are hard to learn from scratch — I help creators and brands grow their digital presence through video, including talking-head videos.</p>
+      <p class="about__ig">Instagram: <a href="https://www.instagram.com/avgamitkumar/" rel="noopener" target="_blank">@avgamitkumar</a></p>
+      <ul class="tools" role="list"><li>CapCut (mobile editing)</li><li>Shot on iPhone 17 📱</li><li>Canva (thumbnails)</li></ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact" aria-labelledby="contactTitle">
+    <p class="label reveal">[ 06 / HIRE ]</p>
+    <h2 class="contact__title reveal" id="contactTitle">Hire me.</h2>
+    <p class="contact__free reveal">Need a reel? DM me now.</p>
+    <div class="contact__ctas reveal">
+      <button class="btn btn--primary btn--xl" type="button" data-hire><span aria-hidden="true">◎</span> Hire me · DM @avgamitkumar</button>
+    </div>
+    <p class="contact__alt reveal">Instagram: <a href="https://www.instagram.com/avgamitkumar/" rel="noopener" target="_blank">@avgamitkumar</a> · WhatsApp: <a href="https://wa.me/919149379162" rel="noopener" target="_blank">+91 91493 79162</a> · Email: <a href="mailto:amitkomar8050@gmail.com">amitkomar8050@gmail.com</a> · <a href="https://www.linkedin.com/in/amit-kumar-90637933a" rel="noopener" target="_blank">LinkedIn</a></p>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>© 2026 Amit Kumar · UniKreate</span><span>Shot on iPhone 17 📱 · CapCut (mobile editing)</span>
 </footer>
 
-<!-- Floating WhatsApp Button -->
-<a class="float-wa" href="https://wa.me/919149379162?text=Hi%20Amit!%20I%20want%20a%20video%20edited." target="_blank" title="Chat on WhatsApp">💬</a>
+<!-- Reel lightbox: glass sheet, swipe down to close, swipe sideways for next/prev -->
+<div class="lb" id="lb" aria-hidden="true">
+  <div class="lb__scrim" data-close></div>
+  <div class="lb__panel glass" role="dialog" aria-modal="true" aria-label="Reel preview">
+    <span class="grip" aria-hidden="true"></span>
+    <button class="lb__x" type="button" data-close aria-label="Close">×</button>
+    <div class="lb__stage"><div class="lb__slot"></div></div>
+    <div class="lb__meta">
+      <p class="lb__tag"></p>
+      <h3 class="lb__title"></h3>
+      <p class="lb__sub"></p>
+    </div>
+    <div class="lb__nav">
+      <button class="lb__arrow" type="button" data-prev aria-label="Previous">←</button>
+      <span class="lb__count"></span>
+      <button class="lb__arrow" type="button" data-next aria-label="Next">→</button>
+    </div>
+    <a class="btn btn--primary lb__cta" href="https://ig.me/m/avgamitkumar" rel="noopener" target="_blank">DM me · @avgamitkumar →</a>
+  </div>
+</div>
 
-<script>
-  // Scroll par sections ka smooth reveal effect
-  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
+<!-- Hire sheet: slides up, copy handle or DM -->
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheet__scrim" data-close></div>
+  <div class="sheet__panel glass" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <span class="grip" aria-hidden="true"></span>
+    <h2 class="sheet__title" id="sheetTitle">Hire me.</h2>
+    <p class="sheet__text">Want a reel? DM me on Instagram, or message me on WhatsApp.</p>
+    <a class="btn btn--primary btn--block" href="https://ig.me/m/avgamitkumar" rel="noopener" target="_blank"><span aria-hidden="true">◎</span> DM @avgamitkumar →</a>
+    <a class="btn btn--glass btn--block" href="https://wa.me/919149379162" rel="noopener" target="_blank">WhatsApp +91 91493 79162 →</a>
+    <button class="btn btn--glass btn--block" type="button" data-copy="@avgamitkumar">Copy handle</button>
+    <button class="btn-text" type="button" data-close>Close</button>
+  </div>
+</div>
 
+<div class="toast glass" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js" defer></script>
 </body>
 </html>
