@@ -163,7 +163,7 @@
       chips.forEach(function(x){ x.setAttribute('aria-pressed', String(x === c)); });
       var f = c.getAttribute('data-f');
       reels.forEach(function(card){
-        var show = f === 'all' || card.getAttribute('data-cat') === f;
+        var show = f === 'top' ? card.hasAttribute('data-top') : card.getAttribute('data-cat') === f;
         var was = !card.classList.contains('is-off');
         card.classList.toggle('is-off', !show);
         if (show && !was){ card.classList.remove('pop'); void card.offsetWidth; card.classList.add('pop'); }
