@@ -330,3 +330,18 @@ mark{background:none;color:transparent;background-image:linear-gradient(100deg,v
 .filters .chip{flex:none}
 .contact__item{white-space:nowrap}
 .contact__item svg{width:16px;height:16px;vertical-align:-3px;margin-right:5px}
+
+/* ---------- Pricing ---------- */
+.price-grid{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px}
+@media (min-width:760px){.price-grid{grid-template-columns:1fr 1fr;gap:16px}}
+.price-card{padding:26px 24px 28px}
+.price-card__tag{display:block;font-size:12px;letter-spacing:.16em;font-weight:800;color:var(--teal);margin-bottom:14px}
+.price-card h3{margin:0 0 10px;font-size:22px;letter-spacing:-.02em;font-weight:700}
+.price-card__amount{margin:0;font-size:clamp(2.2rem,6vw,3rem);line-height:1;font-weight:800;letter-spacing:-.04em}
+.price-card__amount span{font-size:15px;font-weight:600;color:var(--mute);letter-spacing:0}
+.price-card__usd{margin:6px 0 14px;font-size:17px;font-weight:700;color:var(--teal)}
+.price-card__usd span{font-size:13px;font-weight:600;color:var(--mute)}
+.price-card__desc{margin:0;color:var(--mute);font-size:14.5px}
+.price-card .btn{margin-top:20px}
+.price-card--hot{border-color:rgba(47,214,194,.45)}
+.price-note{margin:22px 0 0;color:var(--mute);font-size:14px;text-align:center}
